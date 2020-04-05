@@ -211,6 +211,7 @@ class LabelImage {
 			for (let i=this.Nodes.historyGroup.children.length-1; i>=0; i--) {
 				this.Nodes.historyGroup.removeChild(this.Nodes.historyGroup.children[i]);
 			}
+			document.querySelector('.resultLength').innerHTML = "0";
 			this.Arrays.imageAnnotateShower.splice(0, this.Arrays.imageAnnotateShower.length);
 			this.Arrays.imageAnnotateMemory.splice(0, this.Arrays.imageAnnotateMemory.length);
 			this.Arrays.history.splice(0, this.Arrays.history.length);
