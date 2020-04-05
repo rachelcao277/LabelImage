@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="54f9e9d7-06d8-4f2c-9736-47bae1c4061d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/colorPicker/colorPicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/home.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/labelTool.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/switch.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/font/FontAwesome.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/font/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/font/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/font/fontawesome-webfont.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/font/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/back1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/back2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clear1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/clear2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/alley.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/band.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/basketball.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/cat.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/city.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/dog.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/dogs.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/football.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/furniture.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/person.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/example/street.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/folder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/next1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/next2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/prev1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/prev2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/rect1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/rect2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/saveJson.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/images/toolIcons.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/colorpicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/less.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/operator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/js/webAnnotate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/less/less.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/less/less.min.js" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="284">
+              <caret line="83" column="45" lean-forward="true" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/labelTool.less">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="275">
+              <caret line="393" column="35" lean-forward="true" selection-start-line="393" selection-start-column="35" selection-end-line="393" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>editLabelName</find>
+      <find>labels</find>
+      <find>resultSelectLabel</find>
+      <find>labelManage-createButton</find>
+      <find>selfButton</find>
+      <find>page-list</find>
+      <find>logo</find>
+      <find>header</find>
+      <find>resultList_head</find>
+      <find>onclick</find>
+      <find>isChange</find>
+      <find>isShowLabel</find>
+      <find>labelShower.childNodes</find>
+      <find>select</find>
+      <find>toolMuster</find>
+      <find>indexOperation</find>
+      <find>toolList</find>
+      <find>tagsManager</find>
+      <find>generalFeatures</find>
+      <find>saveBtn</find>
+      <find>closeBtn</find>
+      <find>labelManage</find>
+      <find>scaleCanvas</find>
+      <find>pageControl</find>
+      <find>180</find>
+      <find>tools</find>
+      <find>openFolder</find>
+      <find>LabelImage</find>
+      <find>separator</find>
+      <find>toolFeatures</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/test.js" />
+        <option value="$PROJECT_DIR$/twitterTest.html" />
+        <option value="$PROJECT_DIR$/twitterMain.js" />
+        <option value="$PROJECT_DIR$/runtime.js" />
+        <option value="$PROJECT_DIR$/vendor.js" />
+        <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/Annotate/js/webAnnotate_fb.js" />
+        <option value="$PROJECT_DIR$/Annotate/js/cOperrator.js" />
+        <option value="$PROJECT_DIR$/Annotate/css/home.less" />
+        <option value="$PROJECT_DIR$/Annotate/js/colorpicker.js" />
+        <option value="$PROJECT_DIR$/Annotate/README.md" />
+        <option value="$PROJECT_DIR$/Annotate/js/operator.js" />
+        <option value="$PROJECT_DIR$/Annotate/js/webAnnotate.js" />
+        <option value="$PROJECT_DIR$/Annotate/css/labelTool.less" />
+        <option value="$PROJECT_DIR$/Annotate/index.html" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/css/labelTool.less" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/vcs.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="711" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="LabelImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LabelImage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="LabelImage" type="b2602c69:ProjectViewProjectNode" />
+              <item name="LabelImage" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Annotate/js" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Annotate/images/example" />
+      <recent name="$PROJECT_DIR$/Annotate" />
+      <recent name="$PROJECT_DIR$/Annotate/css" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Annotate/js" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="54f9e9d7-06d8-4f2c-9736-47bae1c4061d" name="Default Changelist" comment="" />
+      <created>1556606503944</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1556606503944</updated>
+      <workItem from="1556606505170" duration="815000" />
+      <workItem from="1557022040262" duration="70000" />
+      <workItem from="1561519990859" duration="790000" />
+      <workItem from="1561614497976" duration="2385000" />
+      <workItem from="1561619375245" duration="37394000" />
+      <workItem from="1562551148127" duration="1868000" />
+      <workItem from="1562565292845" duration="3450000" />
+      <workItem from="1562640190205" duration="588000" />
+      <workItem from="1562742292898" duration="3219000" />
+      <workItem from="1562902053965" duration="1179000" />
+      <workItem from="1563157240505" duration="4093000" />
+      <workItem from="1563244044458" duration="5361000" />
+      <workItem from="1563329305684" duration="3966000" />
+      <workItem from="1563336985804" duration="18246000" />
+      <workItem from="1563506644946" duration="512000" />
+      <workItem from="1563760593691" duration="5891000" />
+      <workItem from="1563866782111" duration="16932000" />
+      <workItem from="1564367384700" duration="13783000" />
+      <workItem from="1564453274243" duration="11676000" />
+      <workItem from="1564712799139" duration="5445000" />
+      <workItem from="1564984313229" duration="2976000" />
+      <workItem from="1565144585870" duration="2665000" />
+      <workItem from="1565231880089" duration="3934000" />
+      <workItem from="1565319552297" duration="14592000" />
+      <workItem from="1565666222188" duration="1611000" />
+      <workItem from="1565679149851" duration="4938000" />
+      <workItem from="1565835993364" duration="13714000" />
+      <workItem from="1571295919988" duration="63730000" />
+      <workItem from="1572859407476" duration="3595000" />
+      <workItem from="1574408494273" duration="604000" />
+      <workItem from="1578985868114" duration="3201000" />
+      <workItem from="1584775130525" duration="187984000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="441207000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1280" height="711" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20571883" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3283582" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3283582" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="GraphQL" order="11" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Annotate/css/switch.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="98">
+          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html" />
+    <entry file="file://$PROJECT_DIR$/test.js" />
+    <entry file="file://$PROJECT_DIR$/twitterMain.js" />
+    <entry file="file://$PROJECT_DIR$/twitterTest.html" />
+    <entry file="file://$PROJECT_DIR$/runtime.js" />
+    <entry file="file://$PROJECT_DIR$/vendor.js" />
+    <entry file="file://$PROJECT_DIR$/../../Company/image-parser/src/modules/TagManagement/TagManagement.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-247">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Company/image-parser/src/modules/Index/Index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/webAnnotate_fb.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="773" column="12" lean-forward="true" selection-start-line="773" selection-start-column="12" selection-end-line="782" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/css/home.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" selection-start-line="2" selection-end-line="8" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/canvasHandle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="20" lean-forward="true" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/extendCookie.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/home.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/http.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/colorpicker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6237">
+          <caret line="297" column="10" lean-forward="true" selection-start-line="297" selection-start-column="10" selection-end-line="297" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#1;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/point.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="21">
+            <caret line="1" selection-start-line="1" selection-end-line="1" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/570875.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/webAnnotate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="1264" column="19" lean-forward="true" selection-start-line="1264" selection-start-column="19" selection-end-line="1264" selection-end-column="19" />
+          <folding>
+            <element signature="e#2620#4191#0" />
+            <element signature="e#6128#6672#0" />
+            <element signature="e#6734#8282#0" />
+            <element signature="e#8334#8745#0" />
+            <element signature="e#9418#9543#0" />
+            <element signature="e#9588#10270#0" />
+            <element signature="e#10315#13694#0" />
+            <element signature="e#10497#11555#0" />
+            <element signature="e#10658#11544#0" />
+            <element signature="e#10867#11482#0" />
+            <element signature="e#12572#12755#0" />
+            <element signature="e#13770#14579#0" />
+            <element signature="e#14870#15081#0" />
+            <element signature="e#15522#17497#0" />
+            <element signature="e#17588#19113#0" />
+            <element signature="n#style#0;n#span#1;n#!!top" expanded="true" />
+            <element signature="e#26770#26961#0" />
+            <element signature="e#33498#33612#0" />
+            <element signature="e#33651#34102#0" />
+            <element signature="e#34138#35214#0" />
+            <element signature="e#35286#35371#0" />
+            <element signature="e#35509#35594#0" />
+            <element signature="e#39047#40225#0" />
+            <element signature="e#40278#41016#0" />
+            <element signature="e#42252#42798#0" />
+            <element signature="e#42861#42943#0" />
+            <element signature="e#43015#43430#0" />
+            <element signature="e#43497#44169#0" />
+            <element signature="e#44235#44348#0" />
+            <element signature="e#44405#45159#0" />
+            <element signature="e#45213#45966#0" />
+            <element signature="n#!!block;n#NoRightMenu#0;n#LabelImage#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/back1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/back2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/clear1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/guiji1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/clear2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/mouse1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/mouse2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/folder.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/next1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/next2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/prev2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/prev1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/rect1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/test.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/test2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/rect2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/toolIcons.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/images/example/city.jpg">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/js/operator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="83">
+          <caret line="54" column="5" lean-forward="true" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/css/labelTool.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="394" column="22" lean-forward="true" selection-start-line="394" selection-start-column="22" selection-end-line="394" selection-end-column="22" />
+          <folding>
+            <element signature="e#3940#4221#0" />
+            <element signature="e#4243#4322#0" />
+            <element signature="e#4338#4619#0" />
+            <element signature="e#4640#4719#0" />
+            <element signature="e#4734#5328#0" />
+            <element signature="e#5399#7796#0" />
+            <element signature="e#10280#10328#0" />
+            <element signature="e#10346#10394#0" />
+            <element signature="e#10408#10479#0" />
+            <element signature="e#10498#10581#0" />
+            <element signature="e#10600#10683#0" />
+            <element signature="e#10700#10771#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Annotate/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="18" column="40" lean-forward="true" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" />
+            <element signature="n#div#3;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/labelTool.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="393" column="35" lean-forward="true" selection-start-line="393" selection-start-column="35" selection-end-line="393" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="83" column="45" lean-forward="true" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

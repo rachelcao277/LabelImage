@@ -1,0 +1,145 @@
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{ margin:0; padding:0; }
+img,input{ border:0;}
+.clear:after { visibility:hidden; display:block; font-size:0; content:"."; clear:both; height:0;}
+.clear { zoom:1;}
+li{ list-style:none}
+i,em{ font-style:normal;}
+table{border-collapse: collapse;border: none;width: 100%; table-layout: fixed;}
+
+/*遮罩层*/
+.mask_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:#333;filter:alpha(opacity=10); /*IE滤镜，透明度50%*/
+    -moz-opacity:0.1; /*Firefox私有，透明度50%*/opacity:0.1;/*其他，透明度50%*/ z-index:9 ; z-index:999988}
+
+.inline-block{
+    display: inline-block;
+    vertical-align: top;
+}
+.header{
+    background: #fff;
+    -webkit-box-shadow: 0 1px 3px #016990;
+    -moz-box-shadow: 0 1px 3px #016990;
+    box-shadow: 0 1px 3px #016990;
+}
+.containers{
+    font-size: 0;
+}
+.logo{
+    margin-left: 0;
+    width: 11.25rem;
+}
+.logo img{
+    height: 3.75rem;
+    width: 100%;
+    object-fit: cover;
+}
+.rightnav ul li{
+    color: #000;
+}
+.rightnav ul li a.list-item{
+    color: #000;
+}
+.navlist{
+    background: #00445e;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.navlist ul li{
+    background: #00445e;
+}
+.nav_tarbar{
+    background: #00445e;
+}
+.alert{
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.modeltabs{
+    position: fixed;
+    top: -52px;
+    text-align: center;
+    font-size: 0.73vw;
+    width: 20vw;
+    left: 50%;
+    margin-left: -10vw;
+    letter-spacing: 1px;
+    display: none;
+    z-index: 9999999;
+}
+.modeltabsSuccess{
+    position: fixed;
+    top: -52px;
+    text-align: center;
+    font-size: 0.73vw;
+    width: 20vw;
+    left: 50%;
+    margin-left: -10vw;
+    letter-spacing: 1px;
+    display: none;
+    z-index: 9999999;
+}
+
+.green{
+    color: #5cb85c;
+}
+.red{
+    color: #d9534f;
+}
+.weight_bold{
+    font-weight: 600;
+}
+.fixed-table-pagination{
+    font-size: 0.875rem;
+}
+.table-striped>tbody>tr:nth-child(odd){
+    background-color: rgba(153,153,153, 0.1);
+}
+.table-hover>tbody>tr:hover{
+    background-color: rgba(85,85,85, 0.1);
+}
+#tableList tbody tr td{
+    vertical-align: middle;
+}
+.page-list{
+    display: none !important;
+}
+
+/*
+    主内容
+*/
+.rightBody{
+    width: 100%;
+    height: 100%;
+    background: #e9effa;
+    padding: 1.25rem 1.25rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.info-table{
+    background: #fff;
+    padding: 1.25rem;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff url("../images/auo_bg.png")no-repeat center center;
+}
+.tableParent {
+    width: 100%;
+    position: relative;
+    overflow-y: auto;
+}
+.borderHeight{
+    height: 1.25rem;
+    width: 1px;
+}
+#tableList{
+    font-size: 0.875rem;
+}
+.fixed-table-loading{
+    font-size: 0.875rem;
+}
+.searchGroup button{
+    margin-right: 0.875rem;
+}
