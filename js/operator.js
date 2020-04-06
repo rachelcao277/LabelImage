@@ -34,9 +34,9 @@ const taskName = document.querySelector('.pageName');                   // 标�
 const processIndex = document.querySelector('.processIndex');           // 当前标注进度
 const processSum = document.querySelector('.processSum');               // 当前标注任务总数
 
-let imgFiles = ['./images/example/street.jpg', './images/example/alley.jpg', './images/example/basketball.jpg',
-'./images/example/football.jpg', './images/example/dog.jpeg', './images/example/cat.jpg', './images/example/dogs.jpg',
-'./images/example/furniture.jpg', './images/example/person.jpg', './images/example/band.jpg'];    //选择上传的文件数据集
+let imgFiles = [ './images/example/football.jpg', './images/example/person.jpg', './images/example/band.jpg',
+'./images/example/street.jpg', './images/example/dog.jpeg', './images/example/cat.jpg', './images/example/dogs.jpg',
+'./images/example/furniture.jpg', './images/example/basketball.jpg', './images/example/alley.jpg'];    //选择上传的文件数据集
 let imgIndex = 1;       //标定图片默认下标;
 let imgSum = 10;        // 选择图片总数;
 
