@@ -52,7 +52,7 @@ LabelImage 是一款用于深度学习分割模型训练的图像标注工具（
 
 # 要求
 - Ubuntu / macOS / Windows
-- Chrome v51+ / Firefox v53+ / Safari v10+ / Edge v15+
+- Chrome v51+ / Firefox v53+
 
 # 问题
 如有疑问或建议，随时向我留言
