@@ -162,6 +162,7 @@ class LabelImage {
 		_nodes.scaleCanvas.appendChild(_nodes.scaleRect);
 		_nodes.canvas.addEventListener('mousedown', this.CanvasMouseDown);
 		_nodes.canvas.addEventListener('mousewheel', this.MouseWheel);
+		_nodes.canvas.addEventListener("DOMMouseScroll", this.MouseWheel); // 兼容Firefox 滚动条事件
 		_nodes.canvas.addEventListener('contextmenu', LabelImage.NoRightMenu.bind(this));
 		_nodes.scaleCanvas.addEventListener('click', this.ScaleCanvasClick);
 		_nodes.crossLine.addEventListener('click', this.CrossHairSwitch);
@@ -1355,7 +1356,7 @@ class LabelImage {
 
 	//----滚动条缩放事件
 	MouseWheel = (e) => {
-		let wd = e.wheelDelta;
+		let wd = e.wheelDelta || e.detail;
 		let newScale = this.scale * (1 + (wd > 0 ? this.scaleStep : -this.scaleStep));
 		newScale = newScale < this.minScale ? this.minScale : newScale;
 		newScale = newScale > this.maxScale ? this.maxScale : newScale;
