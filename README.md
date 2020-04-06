@@ -60,6 +60,9 @@ LabelImage 是一款用于深度学习分割模型训练的图像标注工具（
 # 结语
 感谢你的使用，希望能对你有所帮助，并向广大开发者招募，共同维护，希望可以结合算法实现图片预检测功能以及辅助检测功能，实现标注最简化，为人工智能献一份力，添砖加瓦。
 <br />
+这是我的邮箱：rachelcao277@hotmail.com.
+<br />
 Thank you for your use, I hope it can help you, and recruit and maintain from the majority of developers. I hope that the algorithm can be combined with the image pre-detection function and auxiliary detection function to achieve the most simplified annotation and contribute to artificial intelligence. Add bricks and tiles.
-
+<br />
+This is my email: rachelcao277@hotmail.com.
 
