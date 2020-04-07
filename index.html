@@ -7,11 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>图像标注工具</title>
     <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/preloader.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/switch.css">
     <link rel="stylesheet/less" href="./css/labelTool.less">
 </head>
 <body>
+<div id='preloader'>
+    <div class='loader' hidden>
+        <img src='images/loader.gif' alt>
+    </div>
+</div>
 <div class="LabelImage">
     <div class="toolHead">
         <div class="toolMuster">
@@ -170,6 +176,7 @@
     </div>
 </div>
 
+<script src="js/preloader.js"></script>
 <script src="./less/less.min.js"></script>
 <script src="./colorPicker/colorPicker.js"></script>
 <script src="./js/webAnnotate.js"></script>
