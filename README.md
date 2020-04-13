@@ -2,7 +2,7 @@
   <img src="./images/logo.png"><br/>LabelImage
 </h1>
 <h4 align="center">
-  在线图像多边形标注工具
+  一款在线的深度学习图像分割标注工具
 </h4>
 <div align="center">
   <img src="./images/readme/example.png" width="70%">
