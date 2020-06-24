@@ -1,0 +1,1017 @@
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td{ margin:0; padding:0; }
+img,input{ border:0;}
+.clear:after { visibility:hidden; display:block; font-size:0; content:"."; clear:both; height:0;}
+.clear { zoom:1;}
+li{ list-style:none}
+i,em{ font-style:normal;}
+table{border-collapse: collapse;border: none;width: 100%; table-layout: fixed;}
+body,html{
+    font-size: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    height: 100%;
+}
+/*遮罩层*/
+.mask_box{ position:absolute; top:0; left:0; width:100%; height:100%; background:#333;filter:alpha(opacity=30); /*IE滤镜，透明度50%*/
+    -moz-opacity:0.3; /*Firefox私有，透明度50%*/opacity:0.3;/*其他，透明度50%*/ z-index:999988}
+.loading_box{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    z-index: 999998;
+
+}
+.loaderSpinner{
+    width: 100%;
+    height: 100%;
+    color: #f1f1f1;
+    animation: rotate 2s linear infinite;
+    font-size: 48px;
+    line-height: 50px;
+    text-align: center;
+}
+@keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@-moz-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+@-ms-keyframes rotate {
+    0% {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+.inline-block {
+    display: inline-block;
+    vertical-align: top;
+}
+.button {
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid transparent;
+    width: 55px;
+    height: 30px;
+    line-height: 30px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.button.btn-primary {
+    background: #428bca;
+    color: #fff;
+}
+.button.btn-success {
+    background: #00ca6b;
+    color: #fff;
+}
+.button.btn-default {
+    background: #fff;
+    color: #333;
+    border: 1px solid #333;
+}
+.button.btn-error {
+    background: #ca2700;
+    color: #fff;
+}
+.removeLabel {
+    margin-left: 10px;
+}
+.LabelImage {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+/*
+      头部工具栏
+     */
+.toolHead {
+    width: 100%;
+    background: -webkit-linear-gradient(left, #2b334a, #27405d);/* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(right, #2b334a, #27405d);/* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(right, #2b334a, #27405d);/* Firefox 3.6 - 15 */
+    background: linear-gradient(to right, #2b334a, #27405d);/* 标准的语法 */
+    height: 60px;
+    position: relative;
+}
+.toolHead .toolMuster {
+    width: 100%;
+    height: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    position: relative;
+}
+.toolMuster .logoGroup {
+    position: relative;
+}
+.toolMuster .logoGroup .logo {
+    width: 42px;
+    height: 42px;
+    background: url("../images/logo.png") no-repeat 0 0;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    position: absolute;
+    top: 9px;
+    left: 9px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.toolMuster .logoGroup .logoTitle {
+    text-indent: 60px;
+    font-size: 28px;
+    line-height: 60px;
+    color: #fff;
+}
+.toolMuster .selectOperation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 280px;
+    height: 60px;
+}
+.selectOperation .pageControl {
+    width: 100%;
+    height: 60px;
+    text-align: center;
+}
+.pageControl .pageSwitch{
+    width: 36px;
+    height: 36px;
+    margin-top: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+.pageControl .pagePrev {
+    background: url(../images/toolIcons.png) no-repeat 0 -192px;
+}
+.pageControl .pageNext {
+    background: url(../images/toolIcons.png) no-repeat 0 -288px;
+}
+.pageControl .pagePrev:hover {
+    background: url(../images/toolIcons.png) no-repeat -96px -192px;
+}
+.pageControl .pageNext:hover {
+    background: url(../images/toolIcons.png) no-repeat -96px -288px;
+}
+.pageControl .pageInfo {
+    min-width: 150px;
+    margin: 0 15px;
+    color: #fff;
+    line-height: 1.5;
+}
+.pageControl .pageInfo .pageName {
+    margin-top: 6px;
+    font-size: 14px;
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.pageControl .pageInfo .nameProcess {
+    margin-top: 5px;
+    font-size: 12px;
+}
+.pageControl .pageInfo .annotateProgress {
+    margin-top: 3px;
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    height: 3px;
+    line-height: 3px;
+}
+
+.toolMuster .assistTool {
+    line-height: 60px;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.toolMuster .assistTool .generalFeatures {
+    width: 100%;
+    text-align: right;
+}
+.generalFeatures .featureList {
+    display: inline-block;
+    margin-right: 30px;
+    height: 60px;
+    color: #b3b3b3;
+    text-align: center;
+    line-height: 1.5;
+    vertical-align: top;
+    cursor: pointer;
+}
+.generalFeatures .featureList i.bg {
+    font-style: normal;
+    width: 36px;
+    height: 36px;
+    display: block;
+}
+.generalFeatures .featureList span {
+    font-size: 12px;
+    display: block;
+}
+.generalFeatures .submitSave {
+    padding-top: 12px;
+    display: none;
+}
+.generalFeatures .crossLine {
+    padding-top: 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.generalFeatures .crossLine input {
+    margin: 0;
+}
+.generalFeatures .crossLine span {
+    margin-top: 8px;
+}
+.generalFeatures .labelShower {
+    padding-top: 12px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.generalFeatures .labelShower input {
+    margin: 0;
+}
+.generalFeatures .labelShower span {
+    margin-top: 8px;
+}
+.generalFeatures .screenShot {
+    margin-right: 20px;
+}
+.generalFeatures .screenShot i.bg {
+    background: url(../images/toolIcons.png) no-repeat 0 -384px;
+}
+.generalFeatures .screenShot:hover i.bg {
+    background: url(../images/toolIcons.png) no-repeat -96px -384px;
+}
+.generalFeatures .screenShot:hover span {
+    color: #fff;
+}
+.generalFeatures .screenFull {
+    margin-right: 20px;
+}
+.generalFeatures .screenFull i.bg {
+    background: url(../images/toolIcons.png) no-repeat 0 -480px;
+}
+.generalFeatures .screenFull:hover i.bg {
+    background: url(../images/toolIcons.png) no-repeat -96px -480px;
+}
+.generalFeatures .screenFull:hover span {
+    color: #fff;
+}
+.generalFeatures .dividingLine {
+    width: 1px;
+    height: 28px;
+    background: #ff0000;
+    margin-top: 16px;
+    margin-right: 20px;
+    display: inline-block;
+}
+.generalFeatures .clientHelp {
+    margin-right: 20px;
+}
+.generalFeatures .clientHelp i.bg {
+    background: url(../images/toolIcons.png) no-repeat 0 -576px;
+}
+.generalFeatures .clientHelp:hover i.bg {
+    background: url(../images/toolIcons.png) no-repeat -96px -576px;
+}
+.generalFeatures .clientHelp:hover span {
+    color: #fff;
+}
+.generalFeatures .clientExit {
+    margin-right: 20px;
+}
+.generalFeatures .clientExit i.bg {
+    background: url(../images/toolIcons.png) no-repeat 0 -672px;
+}
+.generalFeatures .clientExit:hover i.bg {
+    background: url(../images/toolIcons.png) no-repeat -96px -672px;
+}
+.generalFeatures .clientExit:hover span {
+    color: #fff;
+}
+/*
+  canvasMain 标注画板主体内容
+ */
+.canvasMain {
+    width: 100%;
+    flex: auto;
+    height: 0;
+    display: flex;
+    background: #434343;
+    position: relative;
+}
+.canvasMain .toolFeatures {
+    background: #21293c;
+    width: 60px;
+    height: 100%;
+    position: relative;
+}
+.toolFeatures .version {
+    position: absolute;
+    width: 60px;
+    left: 0;
+    bottom: 0;
+    line-height: 40px;
+    height: 40px;
+    color: #fff;
+    font-size: 12px;
+    text-align: center;
+}
+.toolFeatures .openFolder {
+    width: 30px;
+    height: 30px;
+    margin: 20px auto 0;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: url(../images/folder.png) no-repeat 0 0;
+    cursor: pointer;
+}
+.toolFeatures .saveJson {
+    width: 24px;
+    height: 24px;
+    margin: 30px auto 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: url(../images/saveJson.png) no-repeat 0 0;
+    background-size: 100%;
+    cursor: pointer;
+}
+.toolFeatures .separator {
+    width: 50px;
+    height: 2px;
+    background: #999;
+    margin: 0 auto;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.toolFeatures .toolSet {
+    width: 36px;
+    height: 36px;
+    margin: 20px auto 0;
+    cursor: pointer;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: #999;
+    line-height: 36px;
+    text-align: center;
+}
+.toolFeatures .toolSet:hover {
+    background: #767a84;
+    color: #fff;
+}
+.toolFeatures .toolSet.focus {
+    background: #767a84;
+    color: #fff;
+}
+.toolFeatures .toolDrag {
+    background: url(../images/toolIcons.png) no-repeat 0 -768px;
+}
+.toolFeatures .toolDrag.focus {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -768px;
+}
+.toolFeatures .toolDrag:hover {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -768px;
+}
+.toolFeatures .toolSegment {
+    background: url(../images/toolIcons.png) no-repeat 0 -864px;
+}
+.toolFeatures .toolSegment.focus {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -864px;
+}
+.toolFeatures .toolSegment:hover {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -864px;
+}
+.toolFeatures .toolRect {
+    background: url(../images/toolIcons.png) no-repeat 0 -960px;
+}
+.toolFeatures .toolRect.focus {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -960px;
+}
+.toolFeatures .toolRect:hover {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -960px;
+}
+.toolFeatures .toolPolygon {
+    background: url(../images/toolIcons.png) no-repeat 0 -1056px;
+}
+.toolFeatures .toolPolygon.focus {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -1056px;
+}
+.toolFeatures .toolPolygon:hover {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -1056px;
+}
+.canvasMain .canvasContent {
+    flex: auto;
+    width: 0;
+    height: 100%;
+    position: relative;
+}
+.canvasContent #canvas {
+    cursor: crosshair;
+    width: 100%;
+    height: 100%;
+}
+.canvasContent .scaleBox {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 6px 6px 0 6px;
+    background: #293245;
+    border: 1px solid #3c5167;
+}
+.canvasContent .scaleBox .scaleCanvas {
+    position: relative;
+    width: 150px;
+    overflow: hidden;
+    z-index: 999;
+    cursor: pointer;
+}
+.canvasContent .scaleBox .scalePanel {
+    width: 100%;
+    font-size: 12px;
+    text-align: center;
+    color: #fff;
+}
+.canvasMain .commentResult {
+    width: 300px;
+    height: 100%;
+    background: #293245;
+    border-left: 1px solid #293245;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.commentResult .resultArea {
+    position: relative;
+    width: 100%;
+    flex: 1;
+    height: 0;
+    display: flex;
+    flex-direction: column;
+}
+.commentResult .resultArea .title {
+    width: 100%;
+    color: #fff;
+    height: 36px;
+    line-height: 36px;
+    font-size: 12px;
+    text-indent: 10px;
+    -webkit-box-shadow: 0 1px 3px 0 #3c5167;
+    -moz-box-shadow: 0 1px 3px 0 #3c5167;
+    box-shadow: 0 1px 3px 0 #3c5167;
+    background: #212d3f;
+}
+.commentResult .resultArea .resultList_head {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: relative;
+    color: #fff;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.resultList_head .headChildren {
+    width: 100%;
+    height: 30px;
+    border-bottom: 1px solid #3c5167;
+}
+.resultList_head .headChildren .headName {
+    display: inherit;
+    position: absolute;
+    left: 50px;
+}
+.resultList_head .headChildren .headDisplay {
+    position: absolute;
+    display: inherit;
+    right: 10px;
+}
+.resultList_head .headChildren .headDelete {
+    position: absolute;
+    display: inherit;
+    right: 50px;
+}
+.resultList_head .headChildren .headEdit {
+    position: absolute;
+    display: inherit;
+    right: 90px;
+}
+.commentResult .resultArea .resultGroup {
+    flex: auto;
+    height: 0;
+    overflow-y: auto;
+}
+.resultGroup .result_list {
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    color: #999;
+    position: relative;
+}
+.resultGroup .result_list .result_no {
+    width: 28px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    font-size: 12px;
+}
+.resultGroup .result_list .result_color {
+    width: 10px;
+    height: 10px;
+    background: #ff0000;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.resultGroup .result_list .result_Name {
+    width: 220px;
+    font-size: 12px;
+    line-height: 28px;
+    color: #fff;
+    display: inline-block;
+    vertical-align: top;
+    border: 0;
+    background: transparent;
+}
+.resultGroup .result_list .result_Name[disabled=true] {
+    cursor: default;
+}
+.resultGroup .result_list i {
+    display: block;
+    position: absolute;
+    font-style: normal;
+    font-size: 12px;
+    height: 28px;
+    line-height: 28px;
+    color: #fff;
+    top: 0;
+    cursor: pointer;
+}
+.resultGroup .result_list .editLabelName {
+    right: 96px;
+}
+.resultGroup .result_list .deleteLabel {
+    right: 57px;
+}
+.resultGroup .result_list .isShowLabel {
+    right: 18px;
+}
+.resultGroup .result_list.active {
+    background: #212b3e;
+}
+.resultGroup .result_list:hover {
+    background: rgba(33, 43, 62, 0.6);
+}
+.commentResult .resultArea .resultSelectLabel {
+    position: absolute;
+    top: 80px;
+    right: 42px;
+    width: 200px;
+    height: 220px;
+    padding: 24px 6px 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+    font-size: 12px;
+}
+.commentResult .resultArea .resultSelectLabel .selectLabelTip {
+    font-size: 14px;
+    text-align: center;
+}
+.commentResult .resultArea .resultSelectLabel .selectLabel-ul {
+    height: 100%;
+    overflow-y: auto;
+}
+.commentResult .resultArea .resultSelectLabel .selectLabel-ul li {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: 1px solid #999;
+    padding: 3px 6px;
+    margin: 4px 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 12px;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.commentResult .resultArea .resultSelectLabel .closeLabelManage {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.commentResult .resultArea .resultSelectLabel::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: 50px;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #f1f1f1;
+}
+.commentResult .resultArea .resultSelectLabel::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: -9px;
+    right: 50px;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #fff;
+}
+.commentResult .resultArea .resultSelectLabel.focus {
+    -webkit-animation: showSelectLabel 0.4s ease-out forwards;
+    -o-animation: showSelectLabel 0.4s ease-out forwards;
+    animation: showSelectLabel 0.4s ease-out forwards;
+    visibility: visible;
+}
+.commentResult .resultArea .resultSelectLabel.blur {
+    -webkit-animation: hideSelectLabel 0.4s ease-out forwards;
+    -o-animation: hideSelectLabel 0.4s ease-out forwards;
+    animation: hideSelectLabel 0.4s ease-out forwards;
+}
+@keyframes showSelectLabel {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@-webkit-keyframes showSelectLabel {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes hideSelectLabel {
+    from {
+        opacity: 1;
+    }
+    to {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+@-webkit-keyframes hideSelectLabel {
+    from {
+        opacity: 1;
+    }
+    to {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+.commentResult .historyContent {
+    width: 100%;
+    height: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.commentResult .historyContent .title {
+    width: 100%;
+    color: #fff;
+    height: 36px;
+    line-height: 36px;
+    font-size: 12px;
+    text-indent: 10px;
+    -webkit-box-shadow: 0 1px 3px 0 #3c5167;
+    -moz-box-shadow: 0 1px 3px 0 #3c5167;
+    box-shadow: 0 1px 3px 0 #3c5167;
+    background: #212d3f;
+}
+.commentResult .historyContent .historyGroup {
+    flex: auto;
+    overflow-y: auto;
+    padding: 5px 0;
+    box-sizing: border-box;
+    height: 0;
+}
+.commentResult .historyContent .historyGroup p {
+    color: #f1f1f1;
+    line-height: 1.8;
+    font-size: 12px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.commentResult .historyContent .historyGroup p:hover {
+    background: rgba(33, 43, 62, 0.6);
+}
+.commentResult .historyContent .historyGroup p.active {
+    background: #212b3e;
+}
+.commentResult .historyContent .historyGroup p.record {
+    color: #999999;
+}
+.labelManage {
+    position: absolute;
+    top: 195px;
+    left: 75px;
+    width: 300px;
+    height: 340px;
+    padding: 24px 6px 8px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.3);
+    z-index: 999999;
+    opacity: 0;
+    visibility: hidden;
+}
+.labelManage .labelManage-Info {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.labelManage .labelManage-Info .labelManage-menu {
+    width: 100%;
+    display: flex;
+}
+.labelManage-menu .labelManage-search {
+    flex: 9;
+}
+.labelManage-menu .labelManage-search .labelSearch-input {
+    width: 100%;
+    height: 30px;
+    text-indent: 8px;
+    border: 1px solid #e1e1e1;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.labelManage-menu .labelManage-createLabel {
+    flex: 3;
+    text-align: center;
+    line-height: 30px;
+}
+.labelManage-Info .labelManage-subList {
+    font-size: 12px;
+    margin-top: 10px;
+}
+.labelManage-Info .labelManage-group {
+    width: 100%;
+    margin-top: 10px;
+    flex: auto;
+}
+.labelManage-Info .labelManage-group .labelTip {
+    text-align: center;
+    font-size: 14px;
+}
+.labelManage-Info .labelManage-group .labelManage-ul {
+    height: 100%;
+    overflow-y: auto;
+}
+.labelManage-Info .labelManage-group .labelManage-ul li {
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    border-radius: 50px;
+    border: 1px solid #999;
+    padding: 3px 6px;
+    margin: 4px 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 12px;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.labelManage .labelManage-create {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+.labelManage .labelManage-create .labelManage-Title {
+    font-size: 1.875rem;
+}
+.labelManage .labelManage-create .labelCreate {
+    margin-top: 1.25rem;
+}
+.labelManage .labelManage-create .labelCreate label {
+    width: 80px;
+    text-align: right;
+    font-size: 14px;
+    line-height: 30px;
+    font-weight: normal;
+}
+.labelManage .labelManage-create .labelCreate .labelCreate-nameInput {
+    width: 195px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid #e1e1e1;
+    font-size: 14px;
+    height: 30px;
+    text-indent: 8px;
+}
+.labelManage .labelManage-create .labelCreate .colorPicker {
+    display: inline-block;
+    vertical-align: top;
+    width: 20px;
+    height: 20px;
+    background: #ff0000;
+    cursor: pointer;
+    margin-top: 5px;
+}
+.labelManage .labelManage-create .labelCreate .colorHex {
+    height: 26px;
+    width: 60px;
+    font-size: 12px;
+    margin-left: 8px;
+    outline: none;
+}
+.labelManage .labelManage-create .labelCreateButtons {
+    margin-top: 50px;
+    text-align: center;
+}
+.labelManage .labelManage-create .labelCreateButtons button {
+    margin: 0 10px;
+}
+.labelManage .closeLabelManage {
+    position: absolute;
+    top: 0;
+    right: 4px;
+    font-size: 18px;
+    cursor: pointer;
+}
+.labelManage.focus {
+    -webkit-animation: showLabelManage 0.4s ease-out forwards;
+    -o-animation: showLabelManage 0.4s ease-out forwards;
+    animation: showLabelManage 0.4s ease-out forwards;
+    visibility: visible;
+}
+.labelManage.blur {
+    -webkit-animation: hideLabelManage 0.4s ease-out forwards;
+    -o-animation: hideLabelManage 0.4s ease-out forwards;
+    animation: hideLabelManage 0.4s ease-out forwards;
+}
+@keyframes showLabelManage {
+    from {
+        opacity: 0;
+        top: 215px;
+    }
+    to {
+        opacity: 1;
+        top: 195px;
+    }
+}
+@-webkit-keyframes showLabelManage {
+    from {
+        opacity: 0;
+        top: 215px;
+    }
+    to {
+        opacity: 1;
+        top: 195px;
+    }
+}
+@keyframes hideLabelManage {
+    from {
+        opacity: 1;
+        top: 195px;
+    }
+    to {
+        opacity: 0;
+        top: 215px;
+        visibility: hidden;
+    }
+}
+@-webkit-keyframes hideLabelManage {
+    from {
+        opacity: 1;
+        top: 195px;
+    }
+    to {
+        opacity: 0;
+        top: 215px;
+        visibility: hidden;
+    }
+}
+.LabelImage .canvasMain .labelManage::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: -10px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #f1f1f1;
+}
+.LabelImage .canvasMain .labelManage::after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 15px;
+    left: -9px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid #fff;
+}

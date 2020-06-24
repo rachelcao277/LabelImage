@@ -16,13 +16,11 @@ const annotate = new LabelImage({
 	annotateState: document.querySelector('.annotateState'),
 	canvasMain: canvasMain,
 	resultGroup: resultGroup,
-	// clearScreen: document.querySelector('.clearScreen'),
 	crossLine: document.querySelector('.crossLine'),
 	labelShower: document.querySelector('.labelShower'),
 	screenShot: document.querySelector('.screenShot'),
 	screenFull: document.querySelector('.screenFull'),
 	colorHex: document.querySelector('#colorHex'),
-	// returnUp: document.querySelector('.returnUp'),
 	toolTagsManager: document.querySelector('.toolTagsManager'),
 	historyGroup: document.querySelector('.historyGroup')
 });

@@ -166,11 +166,9 @@ class LabelImage {
 		_nodes.canvas.addEventListener('contextmenu', LabelImage.NoRightMenu.bind(this));
 		_nodes.scaleCanvas.addEventListener('click', this.ScaleCanvasClick);
 		_nodes.crossLine.addEventListener('click', this.CrossHairSwitch);
-		// _nodes.returnUp.addEventListener('click', this.UndoOperation);
 		_nodes.labelShower.addEventListener('click', this.IsShowLabels);
 		_nodes.screenShot.addEventListener('click', this.ScreenShot);
 		_nodes.screenFull.addEventListener('click', this.IsScreenFull);
-		// _nodes.clearScreen.addEventListener('click', this.ClearScreenHandle);
 		_nodes.historyGroup.addEventListener('click', this.HistoryClick);
 		document.addEventListener('fullscreenchange', this.ScreenViewChange);
 		document.addEventListener('webkitfullscreenchange', this.ScreenViewChange);
@@ -1239,16 +1237,6 @@ class LabelImage {
 		history.innerText = desc;
 		history.classList.add('active');
 		this.Nodes.historyGroup.appendChild(history);
-	};
-
-	//----在历史记录中返回上一步操作
-	UndoOperation = () => {
-		this.isModify = true;
-	};
-
-	//----清空画布已标定的信息
-	ClearScreenHandle = () => {
-		this.UpdateCanvas();
 	};
 
 	//----控制是否显示标签

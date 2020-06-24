@@ -8,9 +8,9 @@
     <title>图像标注工具</title>
     <link rel="Shortcut Icon" type="image/x-icon" href="favicon.ico">
     <link rel="stylesheet" href="./css/preloader.css">
+    <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/font-awesome.min.css">
     <link rel="stylesheet" href="./css/switch.css">
-    <link rel="stylesheet/less" href="./css/labelTool.less">
 </head>
 <body>
 <div id='preloader'>
@@ -25,19 +25,14 @@
                 <div class="logo"></div>
                 <div class="logoTitle">LabelImage</div>
             </div>
-<!--            <div class="toolList">-->
-<!--                <p class="openFolder" title="打开文件夹"></p>-->
-<!--                <p class="saveJson" title="生出Json并保存到本地"></p>-->
-<!--                <input class="openFolderInput" type="file" multiple onchange="changeFolder(this)" hidden>-->
-<!--            </div>-->
             <div class="selectOperation">
                 <div class="pageControl">
-                    <div class="pagePrev inline-block" title="上一张"></div>
+                    <div class="pagePrev pageSwitch inline-block" title="上一张"></div>
                     <div class="pageInfo inline-block">
                         <p class="pageName" title="图片名称">File Name</p>
                         <p class="nameProcess" title="图片位置"><span class="processIndex">0</span> / <span class="processSum">0</span></p>
                     </div>
-                    <div class="pageNext inline-block" title="下一张"></div>
+                    <div class="pageNext pageSwitch inline-block" title="下一张"></div>
                 </div>
             </div>
             <div class="assistTool">
@@ -58,15 +53,6 @@
                         <i class="bg"></i>
                         <span>全屏</span>
                     </p>
-<!--                    <p class="dividingLine"></p>-->
-<!--                    <p class="featureList clientHelp">-->
-<!--                        <i class="bg"></i>-->
-<!--                        <span>帮助</span>-->
-<!--                    </p>-->
-<!--                    <p class="featureList clientExit" title="退出标注工具">-->
-<!--                        <i class="bg"></i>-->
-<!--                        <span>退出</span>-->
-<!--                    </p>-->
                 </div>
             </div>
         </div>
@@ -177,7 +163,6 @@
 </div>
 
 <script src="./js/preloader.js"></script>
-<script src="./less/less.min.js"></script>
 <script src="./colorPicker/colorPicker.js"></script>
 <script src="./js/webAnnotate.js"></script>
 <script src="./js/operator.js"></script>
