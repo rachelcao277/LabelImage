@@ -458,6 +458,16 @@ body,html{
 .toolFeatures .toolPolygon:hover {
     background: #757a84 url(../images/toolIcons.png) no-repeat -96px -1056px;
 }
+.toolFeatures .toolKeyPoints {
+    background: url(../images/toolIcons.png) no-repeat 0 -1056px;
+}
+.toolFeatures .toolKeyPoints.focus {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -1056px;
+}
+.toolFeatures .toolKeyPoints:hover {
+    background: #757a84 url(../images/toolIcons.png) no-repeat -96px -1056px;
+}
+
 .canvasMain .canvasContent {
     flex: auto;
     width: 0;
