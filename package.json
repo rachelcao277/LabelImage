@@ -1,0 +1,69 @@
+{
+  "name": "labelimage",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "mock": "npm run serve --mock",
+    "build:loc": "vue-cli-service build --mode loc",
+    "build": "vue-cli-service build --mode prod",
+    "lint": "vue-cli-service lint",
+    "report": "vue-cli-service build --report"
+  },
+  "dependencies": {
+    "core-js": "3.6.5",
+    "vue-class-component": "7.2.3",
+    "vue-property-decorator": "8.4.2"
+  },
+  "devDependencies": {
+    "vue": "2.6.11",
+    "vue-router": "3.2.0",
+    "vuex": "3.4.0",
+    "axios": "0.19.0",
+    "@typescript-eslint/eslint-plugin": "2.33.0",
+    "@typescript-eslint/parser": "2.33.0",
+    "@vue/cli-plugin-babel": "4.4.0",
+    "@vue/cli-plugin-eslint": "4.4.0",
+    "@vue/cli-plugin-router": "4.4.0",
+    "@vue/cli-plugin-typescript": "4.4.0",
+    "@vue/cli-plugin-vuex": "4.4.0",
+    "@vue/cli-service": "4.4.0",
+    "@vue/eslint-config-prettier": "6.0.0",
+    "@vue/eslint-config-typescript": "5.0.2",
+    "autoprefixer": "9.8.4",
+    "babel-plugin-transform-remove-console": "6.9.4",
+    "cz-conventional-changelog": "2.1.0",
+    "eslint": "6.7.2",
+    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-vue": "6.2.2",
+    "husky": "1.3.1",
+    "koa-easy-mock": "0.1.4",
+    "less": "3.0.4",
+    "less-loader": "5.0.0",
+    "lint-staged": "8.1.5",
+    "prettier": "1.19.1",
+    "progress-bar-webpack-plugin": "2.1.0",
+    "style-resources-loader": "1.3.2",
+    "typescript": "3.9.3",
+    "validate-commit-msg": "2.14.0",
+    "vue-cli-plugin-style-resources-loader": "0.1.4",
+    "vue-template-compiler": "2.6.11"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "validate-commit-msg"
+    }
+  },
+  "lint-staged": {
+    "src/**/*.{txs,ts,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}

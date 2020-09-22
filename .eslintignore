@@ -1,0 +1,10 @@
+build/
+config/
+dist/
+public/
+libs/
+node_modules/
+src/assets/
+src/common/libs/
+vue.config.js
+babel.config.js
