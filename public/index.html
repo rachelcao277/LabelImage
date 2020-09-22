@@ -6,15 +6,18 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title><%= process.env.NODE_ENV %></title>
+    <link rel="stylesheet" href="https://lib.baomitu.com/ant-design-vue/1.6.3/antd.min.css">
     <% if(process.env.NODE_ENV !== 'production'){ %>
     <script src="https://lib.baomitu.com/vue/2.6.10/vue.js"></script>
     <script src="https://lib.baomitu.com/vue-router/3.0.2/vue-router.js"></script>
     <script src="https://lib.baomitu.com/vuex/3.1.0/vuex.js"></script>
+    <script src="https://lib.baomitu.com/ant-design-vue/1.6.3/antd.js"></script>
     <script src="https://lib.baomitu.com/axios/0.19.0/axios.js"></script>
     <% }else{ %>
     <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
     <script src="https://lib.baomitu.com/vue-router/3.0.2/vue-router.js"></script>
     <script src="https://lib.baomitu.com/vuex/3.1.0/vuex.min.js"></script>
+    <script src="https://lib.baomitu.com/ant-design-vue/1.6.3/antd.min.js"></script>
     <script src="https://lib.baomitu.com/axios/0.19.0/axios.min.js"></script>
     <% } %>
   </head>

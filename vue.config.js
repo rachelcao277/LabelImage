@@ -62,8 +62,8 @@ module.exports = {
         vue: "Vue",
         vuex: "Vuex",
         "vue-router": "VueRouter",
-        axios: 'axios'
-        // 'element-ui': 'ELEMENT',
+        axios: 'axios',
+        "ant-design-vue": 'ant-design-vue',
       })
       .plugin("progress-bar-webpack-plugin") // progress-bar-webpack-plugin;
       .use(ProgressBarPlugin)

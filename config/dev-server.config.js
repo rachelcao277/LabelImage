@@ -16,7 +16,7 @@ module.exports = {
   // proxy: 'http://localhost:8080' // 配置跨域处理,只有一个代理
   proxy: { //配置多个跨域
     "/api": {
-      target: "http://xxx/mock/36",
+      target: "http://localhost:8080/mock/36",
       changeOrigin: true,//如果接口跨域，需要进行这个参数配置
       // ws: true,//websocket支持
       // pathRewrite: {　　　　　　　　　　　　　　　　　　　　　　　
@@ -34,7 +34,7 @@ module.exports = {
     //   }
     // },
     '/dev': {
-      target: 'http://xxx/api',
+      target: 'http://localhost:8080/api',
       changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
       ws: false, // websocket支持
       pathRewrite: {
@@ -42,7 +42,7 @@ module.exports = {
       },
     },
     '/mock': {
-      target: "http://xxx:3000/mock/103/api",
+      target: "http://localhost:8080/mock/103/api",
       changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
       ws: false, // websocket支持
       pathRewrite: {
