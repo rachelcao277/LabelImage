@@ -1,4 +1,6 @@
 export default {
-  meta: { title: '关于测试' },
+  meta: {
+    parentPath: '/about',
+    title: '关于测试'
+  },
 };
-

@@ -1,22 +1,78 @@
 <template>
   <div class="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link> |
-    <router-link to="/about/test">About Test</router-link>
+    <a-menu
+      :defaultSelectedKeys="[`${activeRoutePath}`]"
+      :defaultOpenKeys="[`${activeRoutePath}`]"
+      :selectedKeys="[`${activeRoutePath}`]"
+      mode="inline"
+      theme="dark"
+      :inline-collapsed="false"
+      @click="handleClick"
+    >
+      <a-menu-item key="/">
+        <a-icon type="pie-chart" />
+        <span>首页</span>
+      </a-menu-item>
+      <a-sub-menu key="/about">
+        <span slot="title"><a-icon type="mail" /><span>关于</span></span>
+        <a-menu-item key="/about">
+          关于我们
+        </a-menu-item>
+        <a-menu-item key="/about/test">
+          关于测试
+        </a-menu-item>
+        <a-menu-item key="7">
+          Option 7
+        </a-menu-item>
+        <a-menu-item key="8">
+          Option 8
+        </a-menu-item>
+      </a-sub-menu>
+      <a-menu-item key="3">
+        <a-icon type="inbox" />
+        <span>Option 3</span>
+      </a-menu-item>
+      <a-sub-menu key="sub1">
+        <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
+        <a-menu-item key="5">
+          Option 5
+        </a-menu-item>
+        <a-menu-item key="6">
+          Option 6
+        </a-menu-item>
+      </a-sub-menu>
+    </a-menu>
   </div>
 </template>
 
-<style lang="less">
-.nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
+  data(): {[key: string]: any} {
+    return {
+      activeRoutePath: '',
+    };
+  },
+  watch: {
+    $route(to) {
+      console.log(to.path);
+      this.activeRoutePath = to.path.split('-')[0];
     }
+  },
+  methods: {
+    handleClick(e: any): void {
+      this.$router.push(e.key);
+    }
+  }
+});
+</script>
+
+<style lang="less" scoped>
+.nav {
+  width: 240px;
+  height: 100%;
+  .ant-menu {
+    height: 100%;
   }
 }
 </style>
