@@ -36,8 +36,18 @@ var importData = (function () {
         reader.readAsText(selectedFile);//读取文件的内容
         reader.onload = function () {
             //当读取完成之后会回调这个函数，然后此时文件的内容存储到了result中。直接操作即可。
-            let json = JSON.parse(this.result);
-            fromJson(json);
+            try {
+                let json = JSON.parse(this.result);
+                //校验文件内容是否合法
+                if (json && json.length > 0 && json[0].content && json[0].contentType) {
+                    fromJson(json);
+                } else {
+                    throw 'JSON文件内容格式错误！';
+                }
+            } catch (ex) {
+                console.error('读取json文件失败，原因：' + ex);
+            }
+
         };
     }
 
