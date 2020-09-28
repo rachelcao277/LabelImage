@@ -53,17 +53,5 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "validate-commit-msg"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{txs,ts,vue}": [
-      "eslint --fix",
-      "git add"
-    ]
   }
 }

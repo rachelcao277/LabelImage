@@ -1,0 +1,11 @@
+.importJson {
+    width: 24px;
+    height: 24px;
+    margin: 30px auto 20px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background: url(./upload.png) no-repeat 0 0;
+    background-size: 100%;
+    cursor: pointer;
+}
