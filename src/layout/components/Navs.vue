@@ -13,27 +13,66 @@
         <a-icon type="pie-chart" />
         <span>首页</span>
       </a-menu-item>
-      <a-sub-menu key="/about">
-        <span slot="title"><a-icon type="mail" /><span>关于</span></span>
+
+      <a-sub-menu key="dataset">
+        <span slot="title">
+          <a-icon type="mail" /><span>数据集管理</span>
+        </span>
+        <a-menu-item key="/dataset">
+          数据集管理
+        </a-menu-item>
+        <a-menu-item key="/dataset/test">
+          数据集管理test
+        </a-menu-item>
+        <a-menu-item key="/dataset/autograb">
+          自动抓取管理
+        </a-menu-item>
+      </a-sub-menu>
+
+       <a-sub-menu key="label">
+        <span slot="title">
+          <a-icon type="mail" /><span>标注管理</span>
+        </span>
+        <a-menu-item key="/label">
+          标注数据集
+        </a-menu-item>
+
+      </a-sub-menu>
+
+       <a-sub-menu key="train">
+        <span slot="title">
+          <a-icon type="mail" /><span>训练管理</span>
+        </span>
+        <a-menu-item key="/trainAI">
+          训练AI
+        </a-menu-item>
+
+        <a-menu-item key="/testAI">
+          测试AI
+        </a-menu-item>
+      </a-sub-menu>
+
+      <a-sub-menu key="about">
+        <span slot="title">
+          <a-icon type="mail" /><span>关于我们</span>
+        </span>
         <a-menu-item key="/about">
           关于我们
         </a-menu-item>
         <a-menu-item key="/about/test">
           关于测试
         </a-menu-item>
-        <a-menu-item key="7">
-          Option 7
-        </a-menu-item>
-        <a-menu-item key="8">
-          Option 8
-        </a-menu-item>
       </a-sub-menu>
+
+
       <a-menu-item key="3">
         <a-icon type="inbox" />
         <span>Option 3</span>
       </a-menu-item>
       <a-sub-menu key="sub1">
-        <span slot="title"><a-icon type="mail" /><span>Navigation One</span></span>
+        <span slot="title"><a-icon type="mail" />
+          <span>Navigation One</span>
+        </span>
         <a-menu-item key="5">
           Option 5
         </a-menu-item>

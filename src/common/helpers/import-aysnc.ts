@@ -14,6 +14,7 @@ export function routeClearUp(route: string, pageName: string, config?: any) {
     name: `${toUpperCaseFisrt(route)}${toUpperCaseFisrt(pageName)}`,
     component: loadComponent(route, pageName)
   };
+  console.log(res);
   res = Object.assign({}, res, config);
   return res;
 }

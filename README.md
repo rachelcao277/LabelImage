@@ -54,6 +54,29 @@ LabelImage 是一款用于深度学习分割模型训练的图像标注工具（
 # 要求
 - Ubuntu / macOS / Windows
 - Chrome v51+ / Firefox v53+
+- Vue-cli@3 第三版, 目前不支持最新版Vue-cli@4
+- 
+# 项目依赖于 
+- node.js 
+- Vue, 
+- Ant Design Pro ,
+- Vue-cli@3 第三版
+- yarn
+
+# 安装
+
+1. 安装脚手架工具 
+- $ npm install -g @vue/cli@3
+- # OR
+- $ yarn global add @vue/cli@3
+
+2. 安装依赖组件
+- cd ./某个文件夹
+- yarn install   
+
+3. 运行服务
+- yarn run serve 或 vue ui
+ 
 
 # 问题
 如有疑问或建议，随时向我留言

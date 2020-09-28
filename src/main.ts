@@ -5,13 +5,14 @@ import 'regenerator-runtime/runtime';
 import layout from './layout/index.vue';
 import router from './router';
 import store from './store';
-import { _get, _post } from './common/utils/request';
+// import { _get, _post } from './common/utils/request';
+import request from '@/common/utils/request';
 import eventLib from '@/common/utils/document-event';
 window.$_EventLib = eventLib;
 Vue.config.productionTip = false;
 
-Vue.prototype.$post = _post;
-Vue.prototype.$get = _get;
+Vue.prototype.$post = request;
+Vue.prototype.$get = request;
 
 new Vue({
   router,
