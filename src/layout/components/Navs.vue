@@ -21,9 +21,9 @@
         <a-menu-item key="/dataset">
           数据集管理
         </a-menu-item>
-        <a-menu-item key="/dataset/test">
+        <!-- <a-menu-item key="/dataset/test">
           数据集管理test
-        </a-menu-item>
+        </a-menu-item> -->
         <a-menu-item key="/dataset/autograb">
           自动抓取管理
         </a-menu-item>

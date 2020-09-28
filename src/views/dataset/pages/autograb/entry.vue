@@ -1,21 +1,24 @@
-<template v-for="(dset,indexx) in DataSets">
-  <a-card v-bind:key="indexx" hoverable class="ant-col ant-col-6" style="margin-left: 10px;">
-    <img style="width:100%; height:10vw; margin-bottom:10px;" :alt="dset.name" :src="dset.imageurl" />
-    <h1>{{ dset.name }}</h1>
-    数据集已抓取百分比:
-    <a-progress :percent="30" :width="80" />
+<template>
+<a-row>
+  <template v-for="(dset,indexx) in DataSets">
+    <a-card v-bind:key="indexx" hoverable class="ant-col ant-col-6" style="margin-left: 10px;">
+      <img style="width:100%; height:10vw; margin-bottom:10px;" :alt="dset.name" :src="dset.imageurl" />
+      <h1>{{ dset.name }}</h1>
+      数据集已抓取百分比:
+      <a-progress :percent="30" :width="80" />
 
-    当前状态: 运行中, 已停止
-    <template slot="actions" class="ant-card-actions">
-        <!-- <a-button  @click="StartAutoGrab(dset)"><a-icon type="right-circle"/>运行</a-button>
-        <a-button  @click="StartAutoGrab(dset)"><a-icon type="pause"/>停止</a-button> -->
-        <a-icon type="caret-right" @click="StartAutoGrab(dset)" title="运行"/>
-        <a-icon type="pause" @click="StartAutoGrab(dset)" title="停止" />
-        <a-icon type="code" @click="StartAutoGrab(dset)" title="查看日志"/>
-    </template>
-  </a-card>
+      当前状态: 运行中, 已停止
+      <template slot="actions" class="ant-card-actions">
+          <!-- <a-button  @click="StartAutoGrab(dset)"><a-icon type="right-circle"/>运行</a-button>
+          <a-button  @click="StartAutoGrab(dset)"><a-icon type="pause"/>停止</a-button> -->
+          <a-icon type="caret-right" @click="StartAutoGrab(dset)" title="运行"/>
+          <a-icon type="pause" @click="StartAutoGrab(dset)" title="停止" />
+          <a-icon type="code" @click="StartAutoGrab(dset)" title="查看日志"/>
+      </template>
+    </a-card>
+  </template>
+</a-row>
 </template>
-
 <script>
 // import Vue from 'vue';
 // import Antd from 'ant-design-vue';
@@ -60,7 +63,6 @@ export default {
   created() {
     // getRoleList({ t: new Date() })
     // this.handleSearch()
-    alert(11111);
     this.LoadDatasets();
   },
   computed: {
