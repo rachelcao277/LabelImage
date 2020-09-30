@@ -47,7 +47,7 @@
 
           <template v-for="(image,imageindex) in imageSets">
             <a-card hoverable class="ant-col ant-col-5 imagecard" v-bind:key="imageindex"  style="padding:0px" >
-              <img v-bind:alt="image.imagefile" v-bind:src="image.httpurl" style="width:100%;height:10vw;" />
+              <img v-bind:alt="image.imagefile" v-bind:src="image.httpurl" style="width:100%; height:10vw; margin-bottom:10px;" />
               <template slot="actions" class="ant-card-actions">
                   <a-icon key="delete" type="delete" @click="deleteImage(image,imageindex)" />
               </template>
