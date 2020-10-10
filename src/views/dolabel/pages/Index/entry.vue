@@ -15,7 +15,7 @@
 <!-- <link rel="stylesheet" href="@/assets/css/preloader.css">
 <link rel="stylesheet" href="@/assets/css/style.css">
 <link rel="stylesheet" href="@/assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="@/assets/css/switch.css"> -->
+<link rel="stylesheet" href="@/assets/css/switch.css">  -->
 
 
 
