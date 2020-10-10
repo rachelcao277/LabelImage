@@ -525,6 +525,7 @@ export default class LabelImage {
     if (e.button === 0) {
       this.isDrogCircle = false;
       if (_arrays.resultIndex !== 0) {
+        debugger;
         const imageIndex = _arrays.imageAnnotateShower[_arrays.resultIndex - 1].content;
         if (imageIndex.length > 0) {
           for (let i = 0; i < imageIndex.length; i++) {

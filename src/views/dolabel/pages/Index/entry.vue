@@ -194,7 +194,7 @@ export default Vue.extend({
       imgIndex: 1, // 标定图片默认下标;
       imgSum: 10, // 选择图片总数;
       imgFiles: [
-        '/static/dataset/厨余垃圾/艾草/艾草_3.jpg',
+        'https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2pwZy9QbjRTbTBSc0F1aEFZNGpOOEtTa1pJV3dpY1pkWUZ6Y0lWdHRLaWJPYUQzdWFSRkdUYllwaWIxTFEzWWtTT0dma2ZLR3IzaWJzc0lYT0N4TWxNYURrS1N1YWcvNjQw?x-oss-process=image/format,png',
         '/static/dataset/厨余垃圾/艾草/艾草_0.jpg',
         '/static/dataset/厨余垃圾/艾草/艾草_1.jpg',
         '/static/dataset/厨余垃圾/艾草/艾草_2.jpg',
