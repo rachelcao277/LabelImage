@@ -288,9 +288,22 @@ export default class LabelImage {
     document.addEventListener('mozfullscreenchange', this.ScreenViewChange.bind(this));
     document.addEventListener('msfullscreenchange', this.ScreenViewChange.bind(this));
     // _nodes.canvas.addEventListener('mousemove', (e: MouseEvent) => { this.CanvasMouseMove(e); });
-    _nodes.canvas.addEventListener('mousemove', this.CanvasMouseMove.bind(this));
     _nodes.resultGroup.addEventListener('mouseover', this.ResultListOperation.bind(this));
     _nodes.toolTagsManager.addEventListener('click', this.ManageLabels.bind(this));
+
+
+    // 初始化事件绑定函数, 为了能移除掉所以保存起来
+    _nodes.canvas.onDragRectCircleRepaintRectFN = this.DragRectCircleRepaintRect.bind(this);
+    _nodes.canvas.onRemoveDragRectCircleFn = this.RemoveDragRectCircle.bind(this);
+    _nodes.canvas.onCircleDragFn = this.CircleDrag.bind(this);
+    _nodes.canvas.onRemoveCircleDragFn = this.RemoveCircleDrag.bind(this);
+    _nodes.canvas.onImageDragFn = this.ImageDrag.bind(this);
+    _nodes.canvas.onRemoveImageDragFn = this.RemoveImageDrag.bind(this);
+    _nodes.canvas.onMouseMoveDrawRectFn = this.MouseMoveDrawRect.bind(this);
+    _nodes.canvas.onMouseUpRemoveDrawRectFn = this.MouseUpRemoveDrawRect.bind(this);
+    _nodes.canvas.onDragRectCircleRepaintRectFN = this.MouseMoveCrossHairLocation.bind(this);
+    _nodes.canvas.onCanvasMouseMoveFN = this.CanvasMouseMove.bind(this);
+    _nodes.canvas.addEventListener('mousemove', _nodes.canvas.onCanvasMouseMoveFN);
   }
 
   // ----设置图片并初始化画板信息
@@ -475,12 +488,15 @@ export default class LabelImage {
       _nodes.crossLine.childNodes[1].checked = false;
       _nodes.crossLine.classList.remove('focus');
       this.SetFeatures('crossOn', false);
-      _nodes.canvas.removeEventListener('mousemove', this.MouseMoveCrossHairLocation.bind(this));
+      // _nodes.canvas.removeEventListener('mousemove', this.MouseMoveCrossHairLocation.bind(this));
+      _nodes.canvas.removeEventListener('mousemove', _nodes.canvas.onDragRectCircleRepaintRectFN);
     } else {
       _nodes.crossLine.childNodes[1].checked = true;
       _nodes.crossLine.classList.add('focus');
       this.SetFeatures('crossOn', true);
-      _nodes.canvas.addEventListener('mousemove', this.MouseMoveCrossHairLocation.bind(this));
+
+      // _nodes.canvas.onDragRectCircleRepaintRectFN = this.MouseMoveCrossHairLocation.bind(this);
+      _nodes.canvas.addEventListener('mousemove', _nodes.canvas.onDragRectCircleRepaintRectFN);
     }
   }
 
@@ -497,7 +513,7 @@ export default class LabelImage {
   CanvasMouseMove(this: LabelImage, e: any) {
     const _nodes = this.Nodes;
     const _arrays = this.Arrays;
-    // debugger;
+    // ;
     this.GetMouseInCanvasLocation(e);
     if (_arrays.resultIndex !== 0) {
       const imageIndexShow = _arrays.imageAnnotateShower[_arrays.resultIndex - 1].content;
@@ -525,7 +541,6 @@ export default class LabelImage {
     if (e.button === 0) {
       this.isDrogCircle = false;
       if (_arrays.resultIndex !== 0) {
-        debugger;
         const imageIndex = _arrays.imageAnnotateShower[_arrays.resultIndex - 1].content;
         if (imageIndex.length > 0) {
           for (let i = 0; i < imageIndex.length; i++) {
@@ -535,11 +550,20 @@ export default class LabelImage {
               this.isDrogCircle = true;
               this.snapCircleIndex = i;
               if (_arrays.imageAnnotateShower[_arrays.resultIndex - 1].contentType === 'rect') {
-                this.Nodes.canvas.addEventListener('mousemove', this.DragRectCircleRepaintRect.bind(this));
-                this.Nodes.canvas.addEventListener('mouseup', this.RemoveDragRectCircle.bind(this));
+                // this.Nodes.canvas.onDragRectCircleRepaintRectFN = this.DragRectCircleRepaintRect.bind(this);// 为了后面能够移除掉,所以存起来.
+                this.Nodes.canvas.addEventListener('mousemove', this.Nodes.canvas.onDragRectCircleRepaintRectFN);
+
+                // this.Nodes.canvas.onRemoveDragRectCircleFn = this.RemoveDragRectCircle.bind(this);// 为了后面能够移除掉,所以存起来.
+                this.Nodes.canvas.addEventListener('mouseup', this.Nodes.canvas.onRemoveDragRectCircleFn);
+
               } else if (_arrays.imageAnnotateShower[_arrays.resultIndex - 1].contentType === 'polygon') {
-                this.Nodes.canvas.addEventListener('mousemove', this.CircleDrag.bind(this));
-                this.Nodes.canvas.addEventListener('mouseup', this.RemoveCircleDrag.bind(this));
+
+                // this.Nodes.canvas.onCircleDragFn = this.CircleDrag.bind(this);// 为了后面能够移除掉,所以存起来.
+                this.Nodes.canvas.addEventListener('mousemove', this.Nodes.canvas.onCircleDragFn);
+
+                // this.Nodes.canvas.onRemoveCircleDragFn = this.RemoveCircleDrag.bind(this);// 为了后面能够移除掉,所以存起来.
+                this.Nodes.canvas.addEventListener('mouseup', this.Nodes.canvas.onRemoveCircleDragFn);
+
               }
               return;
             } else {
@@ -554,8 +578,12 @@ export default class LabelImage {
           const prevP = this.CalculateChange(e, _nodes.canvas);
           this.prevX = prevP.x;
           this.prevY = prevP.y;
-          _nodes.canvas.addEventListener('mousemove', this.ImageDrag.bind(this));
-          _nodes.canvas.addEventListener('mouseup', this.RemoveImageDrag.bind(this));
+
+          // this.Nodes.canvas.onImageDragFn = this.ImageDrag.bind(this);
+          // this.Nodes.canvas.onRemoveImageDragFn = this.RemoveImageDrag.bind(this);
+
+          _nodes.canvas.addEventListener('mousemove', this.Nodes.canvas.onImageDragFn);
+          _nodes.canvas.addEventListener('mouseup', this.Nodes.canvas.onRemoveImageDragFn);
         } else if (this.Features.rectOn) {
           // 是否开启绘制矩形功能
           if (this.Arrays.resultIndex === 0) {
@@ -564,8 +592,15 @@ export default class LabelImage {
             _nodes.ctx.fillStyle = 'rgba(255,0,0,' + this.opacity + ')';
             this.rectX = this.mouseX;
             this.rectY = this.mouseY;
-            this.Nodes.canvas.addEventListener('mousemove', this.MouseMoveDrawRect.bind(this));
-            this.Nodes.canvas.addEventListener('mouseup', this.MouseUpRemoveDrawRect.bind(this));
+
+            console.log('MouseMoveDrawRect addEventListener 绑定绘制矩形框的事件');
+
+            // this.Nodes.canvas.onMouseMoveDrawRectFn = this.MouseMoveDrawRect.bind(this);// 为了后面能够移除掉,所以存起来.
+            this.Nodes.canvas.addEventListener('mousemove', this.Nodes.canvas.onMouseMoveDrawRectFn);
+
+            // this.Nodes.canvas.onMouseUpRemoveDrawRectFn = this.MouseUpRemoveDrawRect.bind(this);// 为了后面能够移除掉,所以存起来.
+            this.Nodes.canvas.addEventListener('mouseup', this.Nodes.canvas.onMouseUpRemoveDrawRectFn);
+
           }
         } else if (this.Features.polygonOn) {
           // 是否开启绘制多边形功能
@@ -601,8 +636,11 @@ export default class LabelImage {
       const prevP = this.CalculateChange(e, _nodes.canvas);
       this.prevX = prevP.x;
       this.prevY = prevP.y;
-      _nodes.canvas.addEventListener('mousemove', this.ImageDrag.bind(this));
-      _nodes.canvas.addEventListener('mouseup', this.RemoveImageDrag.bind(this));
+
+      // _nodes.canvas.onImageDragFN = this.ImageDrag.bind(this);
+      // _nodes.canvas.onRemoveImageDragFN = this.RemoveImageDrag.bind(this);
+      _nodes.canvas.addEventListener('mousemove', _nodes.canvas.onImageDragFN);
+      _nodes.canvas.addEventListener('mouseup', _nodes.canvas.onRemoveImageDragFN);
     }
   }
 
@@ -765,8 +803,13 @@ export default class LabelImage {
   // ----移除圆点拖拽事件, 并重新绘制一遍最新状态
   RemoveCircleDrag() {
     const index = this.Arrays.resultIndex - 1;
-    this.Nodes.canvas.removeEventListener('mousemove', this.CircleDrag);
-    this.Nodes.canvas.removeEventListener('mouseup', this.RemoveCircleDrag);
+
+
+    // this.Nodes.canvas.removeEventListener('mousemove', this.CircleDrag.bind(this));
+    // this.Nodes.canvas.removeEventListener('mouseup', this.RemoveCircleDrag.bind(this));
+    this.Nodes.canvas.removeEventListener('mousemove', this.Nodes.canvas.onCircleDragFn);
+    this.Nodes.canvas.removeEventListener('mouseup', this.Nodes.canvas.onRemoveCircleDragFn);
+
     // 移除圆点拖拽事件之后，改变被拖拽圆点在矩形蒙层数据中的坐标
     this.CalcRectMask(this.Arrays.imageAnnotateShower[index].content);
     this.DrawSavedAnnotateInfoToShow();
@@ -794,12 +837,15 @@ export default class LabelImage {
     this.ReplaceAnnotateShow();
     this.DrawSavedAnnotateInfoToMemory(false);
     this.drawFlag = true;
-    this.Nodes.canvas.removeEventListener('mousemove', this.ImageDrag);
-    this.Nodes.canvas.removeEventListener('mouseup', this.RemoveImageDrag);
+    // this.Nodes.canvas.removeEventListener('mousemove', this.ImageDrag.bind(this));
+    // this.Nodes.canvas.removeEventListener('mouseup', this.RemoveImageDrag.bind(this));
+    this.Nodes.canvas.removeEventListener('mousemove', this.Nodes.canvas.onImageDragFn);
+    this.Nodes.canvas.removeEventListener('mouseup', this.Nodes.canvas.onRemoveImageDragFn);
   }
 
   // ----鼠标移动绘制矩形事件
   MouseMoveDrawRect(e: any) {
+    console.log('MouseMoveDrawRect 鼠标移动绘制矩形');
     this.GetMouseInCanvasLocation(e);
     this.DrawSavedAnnotateInfoToShow();
     this.Nodes.ctx.strokeStyle = '#ff0000';
@@ -808,8 +854,9 @@ export default class LabelImage {
     this.Nodes.ctx.fillRect(this.rectX, this.rectY, this.mouseX - this.rectX, this.mouseY - this.rectY);
   }
 
-  // ----绘制矩形时鼠标抬起后移除监听函数
+  // ----绘制矩形时鼠标抬起后 移除监听函数
   MouseUpRemoveDrawRect() {
+    console.log('MouseUpRemoveDrawRect 执行鼠标抬起后任务1');
     if (this.mouseX - this.rectX >= 5 || this.rectX - this.mouseX >= 5) { // 判断矩形绘制距离大于五才认定为有效绘制
       // 保存绘图数据
       this.CreateNewResultList(this.mouseX, this.mouseY, 'rect');
@@ -818,8 +865,13 @@ export default class LabelImage {
       const index = this.Arrays.resultIndex - 1;
       this.RecordOperation('add', '绘制矩形框', index, JSON.stringify(this.Arrays.imageAnnotateMemory[index]));
     }
-    this.Nodes.canvas.removeEventListener('mousemove', this.MouseMoveDrawRect);
-    this.Nodes.canvas.removeEventListener('mouseup', this.MouseUpRemoveDrawRect);
+
+    console.log('MouseUpRemoveDrawRect 执行鼠标抬起后任务2 移除监听函数');
+    // this.Nodes.canvas.removeEventListener('mousemove', this.MouseMoveDrawRect.bind(this));
+    // this.Nodes.canvas.removeEventListener('mouseup', this.MouseUpRemoveDrawRect.bind(this));
+
+    this.Nodes.canvas.removeEventListener('mousemove', this.Nodes.canvas.onMouseMoveDrawRectFn);
+    this.Nodes.canvas.removeEventListener('mouseup', this.Nodes.canvas.onMouseUpRemoveDrawRectFn);
   }
 
   // ----拖拽矩形圆点时改变矩形十个点坐标
@@ -863,8 +915,12 @@ export default class LabelImage {
     this.ReplaceAnnotateMemory();
     this.DrawSavedAnnotateInfoToMemory(false);
     this.drawFlag = true;
-    this.Nodes.canvas.removeEventListener('mousemove', this.DragRectCircleRepaintRect);
-    this.Nodes.canvas.removeEventListener('mouseup', this.RemoveDragRectCircle);
+    // this.Nodes.canvas.removeEventListener('mousemove', this.DragRectCircleRepaintRect.bind(this));
+    // this.Nodes.canvas.removeEventListener('mouseup', this.RemoveDragRectCircle.bind(this));
+    // this.Nodes.canvas.onRemoveDragRectCircleFn = this.RemoveDragRectCircle.bind(this);
+    this.Nodes.canvas.removeEventListener('mousemove', this.Nodes.canvas.onDragRectCircleRepaintRectFn);
+    this.Nodes.canvas.removeEventListener('mouseup', this.Nodes.canvas.onRemoveDragRectCircleFn);
+
     const index = this.Arrays.resultIndex - 1;
     this.RecordOperation('modify', '拖拽更新矩形框', index, JSON.stringify(this.Arrays.imageAnnotateMemory[index]));
   }
