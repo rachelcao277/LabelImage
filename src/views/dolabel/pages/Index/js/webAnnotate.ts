@@ -293,7 +293,7 @@ export default class LabelImage {
 
 
     // 初始化事件绑定函数, 为了能移除掉所以保存起来
-    _nodes.canvas.onDragRectCircleRepaintRectFN = this.DragRectCircleRepaintRect.bind(this);
+    _nodes.canvas.onDragRectCircleRepaintRectFn = this.DragRectCircleRepaintRect.bind(this);
     _nodes.canvas.onRemoveDragRectCircleFn = this.RemoveDragRectCircle.bind(this);
     _nodes.canvas.onCircleDragFn = this.CircleDrag.bind(this);
     _nodes.canvas.onRemoveCircleDragFn = this.RemoveCircleDrag.bind(this);
@@ -301,7 +301,8 @@ export default class LabelImage {
     _nodes.canvas.onRemoveImageDragFn = this.RemoveImageDrag.bind(this);
     _nodes.canvas.onMouseMoveDrawRectFn = this.MouseMoveDrawRect.bind(this);
     _nodes.canvas.onMouseUpRemoveDrawRectFn = this.MouseUpRemoveDrawRect.bind(this);
-    _nodes.canvas.onDragRectCircleRepaintRectFN = this.MouseMoveCrossHairLocation.bind(this);
+    _nodes.canvas.onMouseMoveCrossHairLocationFn = this.MouseMoveCrossHairLocation.bind(this);
+
     _nodes.canvas.onCanvasMouseMoveFN = this.CanvasMouseMove.bind(this);
     _nodes.canvas.addEventListener('mousemove', _nodes.canvas.onCanvasMouseMoveFN);
   }
@@ -489,14 +490,14 @@ export default class LabelImage {
       _nodes.crossLine.classList.remove('focus');
       this.SetFeatures('crossOn', false);
       // _nodes.canvas.removeEventListener('mousemove', this.MouseMoveCrossHairLocation.bind(this));
-      _nodes.canvas.removeEventListener('mousemove', _nodes.canvas.onDragRectCircleRepaintRectFN);
+      _nodes.canvas.removeEventListener('mousemove', _nodes.canvas.onMouseMoveCrossHairLocationFn);
     } else {
       _nodes.crossLine.childNodes[1].checked = true;
       _nodes.crossLine.classList.add('focus');
       this.SetFeatures('crossOn', true);
 
       // _nodes.canvas.onDragRectCircleRepaintRectFN = this.MouseMoveCrossHairLocation.bind(this);
-      _nodes.canvas.addEventListener('mousemove', _nodes.canvas.onDragRectCircleRepaintRectFN);
+      _nodes.canvas.addEventListener('mousemove', _nodes.canvas.onMouseMoveCrossHairLocationFn);
     }
   }
 
@@ -550,8 +551,8 @@ export default class LabelImage {
               this.isDrogCircle = true;
               this.snapCircleIndex = i;
               if (_arrays.imageAnnotateShower[_arrays.resultIndex - 1].contentType === 'rect') {
-                // this.Nodes.canvas.onDragRectCircleRepaintRectFN = this.DragRectCircleRepaintRect.bind(this);// 为了后面能够移除掉,所以存起来.
-                this.Nodes.canvas.addEventListener('mousemove', this.Nodes.canvas.onDragRectCircleRepaintRectFN);
+                // this.Nodes.canvas.onDragRectCircleRepaintRectFn = this.DragRectCircleRepaintRect.bind(this);// 为了后面能够移除掉,所以存起来.
+                this.Nodes.canvas.addEventListener('mousemove', this.Nodes.canvas.onDragRectCircleRepaintRectFn);
 
                 // this.Nodes.canvas.onRemoveDragRectCircleFn = this.RemoveDragRectCircle.bind(this);// 为了后面能够移除掉,所以存起来.
                 this.Nodes.canvas.addEventListener('mouseup', this.Nodes.canvas.onRemoveDragRectCircleFn);
@@ -1241,6 +1242,7 @@ export default class LabelImage {
     }
     // 添加标签事件
     labelManageCreate.onclick = function() {
+      // console.log('labelManageCreate.onclick');
       flag = false;
       labelManageTitle.innerText = '创建标签';
       addLabelName.value = '';
@@ -1708,8 +1710,8 @@ export default class LabelImage {
   // ----按缩放程度修改数据展示面板数据
   ReplaceAnnotateShow() {
     this.Arrays.imageAnnotateShower.splice(0, this.Arrays.imageAnnotateShower.length);
-    this.Arrays.imageAnnotateMemory.map((item, index: number) => {
-      console.log(index);
+    this.Arrays.imageAnnotateMemory.map((item) => {
+      // console.log(index + 12);
       const content: Array<Point> = [];
       item.content.forEach(contents => {
         const p = new Point(
@@ -1753,7 +1755,7 @@ export default class LabelImage {
       anno.labelLocation = this.ComputerLabelLocation(mask);
       anno.contentType = item.contentType;
 
-      this.Arrays.imageAnnotateMemory.push(anno);
+      this.Arrays.imageAnnotateShower.push(anno);
     });
   }
 
