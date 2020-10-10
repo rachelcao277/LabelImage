@@ -14,15 +14,14 @@
       <a-progress :percent="dset.progress" :width="80" />
 
       当前状态: {{ dset.runstate }} <!-- 运行中, 已停止,未运行 -->
+
       <template slot="actions" class="ant-card-actions">
           <!-- <a-button  @click="StartAutoGrab(dset)"><a-icon type="right-circle"/>运行</a-button>
           <a-button  @click="StartAutoGrab(dset)"><a-icon type="pause"/>停止</a-button> -->
           <a-icon type="caret-right" @click="StartAutoGrab(dset)" title="运行"/>
           <a-icon type="pause" @click="StopAutoGrab(dset)" title="停止" />
           <a-icon type="code" @click="GetProcessLog(dset)" title="查看日志"/>
-
-
-
+          <a-icon type="sync" @click="RefreshState(dset)" title="刷新" />
       </template>
     </a-card>
   </template>
@@ -52,7 +51,7 @@ export default {
       visibleLogModal: false,
       LogMessage: '',
       newDataset: {
-        'name': '图片数据集', 'description': 'yolo5', 'imageurl': '/static/相册封面 (5).jpg'
+        'name': '图片数据集', 'description': 'yolo5', 'imageurl': '/static/img/封面5.jpg'
       },
       WillDeleteDataSet: {},
       WillDeleteDataSetIndex: -1,
@@ -77,8 +76,8 @@ export default {
     // getRoleList({ t: new Date() })
     // this.handleSearch()
     this.LoadDatasets();
-    window.setInterval(this.GetProcessState, 5000);
-    this.GetProcessState(); // 立即执行一次
+    // window.setInterval(this.GetProcessState, 5000);
+    // window.setInterval(this.RefreshState, 500); // 立即执行一次
     // window.setInterval(this.GetSpeedOfProgress, 10000);
 
   },
@@ -91,6 +90,77 @@ export default {
     // }
   },
   methods: {
+
+    StopAutoGrab(dataset) {
+      console.log(dataset);
+      const DatasetName = dataset.name;
+
+      this.$post({
+        url: '/AutoGrab/StopGrab',
+        params: { 'DatasetName': DatasetName },
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      })
+        .then(res => {
+          if (res.success) {
+            // this.DataSets = res.data;
+            this.$message.info(res.message);
+            this.RefreshState();
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+
+      console.log(DatasetName);
+    },
+    StartAutoGrab(dataset) {
+      console.log(dataset);
+      const DatasetName = dataset.name;
+
+      this.$post({
+        url: '/AutoGrab/StartGrab',
+        params: { 'DatasetName': DatasetName },
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      })
+        .then(res => {
+          if (res.success) {
+            // this.DataSets = res.data;
+            this.$message.info(res.message);
+            this.RefreshState();
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+
+      console.log(DatasetName);
+    },
+    // 取得进程的日志
+    GetProcessLog(dataset) {
+      console.log(dataset);
+      const DatasetName = dataset.name;
+      this.$post({
+        url: '/AutoGrab/GetProcessLog',
+        params: { 'DatasetName': DatasetName },
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      })
+        .then(res => {
+          if (res.success) {
+            // this.DataSets = res.data;
+            this.visibleLogModal = true;
+            this.LogMessage = res.message;
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+    },
     // 取得进度比例
     GetSpeedOfProgress() {
       for (let i = 0; i < this.DataSets.length; i++) {
@@ -122,77 +192,13 @@ export default {
         console.log(DatasetName);
       }
     },
-    StopAutoGrab(dataset) {
-      console.log(dataset);
-      const DatasetName = dataset.name;
-
-      this.$post({
-        url: '/AutoGrab/StopGrab',
-        params: { 'DatasetName': DatasetName },
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8'
-        }
-      })
-        .then(res => {
-          if (res.success) {
-            // this.DataSets = res.data;
-            this.$message.info(res.message);
-          } else {
-            this.$message.info(res.message);
-          }
-        });
-
-      console.log(DatasetName);
-    },
-    StartAutoGrab(dataset) {
-      console.log(dataset);
-      const DatasetName = dataset.name;
-
-      this.$post({
-        url: '/AutoGrab/StartGrab',
-        params: { 'DatasetName': DatasetName },
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8'
-        }
-      })
-        .then(res => {
-          if (res.success) {
-            // this.DataSets = res.data;
-            this.$message.info(res.message);
-          } else {
-            this.$message.info(res.message);
-          }
-        });
-
-      console.log(DatasetName);
-    },
-    GetProcessLog(dataset) {
-      console.log(dataset);
-      const DatasetName = dataset.name;
-      this.$post({
-        url: '/AutoGrab/GetProcessLog',
-        params: { 'DatasetName': DatasetName },
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8'
-        }
-      })
-        .then(res => {
-          if (res.success) {
-            // this.DataSets = res.data;
-            this.visibleLogModal = true;
-            this.LogMessage = res.message;
-          } else {
-            this.$message.info(res.message);
-          }
-        });
-    },
-    GetProcessState() {
-      // console.log('GetProcessState');
+    // 刷新状态
+    RefreshState() {
+      this.GetProcessState();
       this.GetSpeedOfProgress();
+    },
 
+    GetProcessState() {
       for (let i = 0; i < this.DataSets.length; i++) {
         const dataa = this.DataSets[i];
         this.$post({
@@ -208,21 +214,10 @@ export default {
           .then(res => {
             console.log(res);
             if (res.success) {
-              // dataa.runstate = res.message;
               // 返回的是一个心跳标志,会一直在增长
-              // if (dataa.harte !== res.message) {
-              //   dataa.harte = res.message;
-              //   Vue.set(dataa, 'runstate', '运行中');
-              // } else {
-              //   dataa.harte = res.message;
-              //   Vue.set(dataa, 'runstate', '暂停或等待中');
-              // }
               Vue.set(dataa, 'runstate', res.message);
-              // this.$message.info(dataa.name + res.message);
             } else {
               Vue.set(dataa, 'runstate', '通信中断');
-              // this.$message.info(dataa.name + res.message);
-              // this.$message.info(res.message);
             }
           });
       }
@@ -241,6 +236,7 @@ export default {
         .then(res => {
           if (res.success) {
             this.DataSets = res.data;
+            this.RefreshState();
           } else {
             this.$message.info(res.message);
           }

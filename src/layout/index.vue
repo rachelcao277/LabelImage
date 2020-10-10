@@ -4,7 +4,7 @@
     <div class="main">
       <Navs></Navs>
       <div class="container">
-        <Breadcrumb></Breadcrumb>
+        <!-- <Breadcrumb></Breadcrumb> -->
         <div class="view">
           <transition name="router-fade" mode="out-in">
             <router-view />
@@ -19,12 +19,12 @@
 // @ is an alias to /src
 import Navs from './components/Navs.vue';
 import Header from './components/Header.vue';
-import Breadcrumb from './components/Breadcrumb.vue';
+// import Breadcrumb from './components/Breadcrumb.vue';
 export default {
   components: {
     Navs,
     Header,
-    Breadcrumb
+    // Breadcrumb
   }
 };
 </script>

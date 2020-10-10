@@ -21,6 +21,7 @@ const pageList = files.map(file => {
 });
 // 组装pagelist信息 end
 module.exports = {
+  
   // 公共路径
   // publicPath: IS_PROD ? '/site/vue-demo/': '/',
   // publicPath: './',
@@ -55,6 +56,11 @@ module.exports = {
       .set("@assets", resolve("src/assets"))
       .set("@views", resolve("src/views"))
       .set("@store", resolve("src/store"))
+      .set("@statics", resolve("src/store"))
+      // .set('dolabel_operator', resolve('src/assets/dolabel/js/operator')
+      // .set('dolabel_colorPicker', resolve('src/assets/dolabel/js/colorPicker')
+      // .set('dolabel_webAnnotate', resolve('src/assets/dolabel/js/webAnnotate')
+      // .set('dolabel_preloader', resolve('src/assets/dolabel/js/preloader')
       .end()
       .end()
       .stats({ timings: true }) // stats
@@ -120,6 +126,12 @@ module.exports = {
     }
   },
   configureWebpack: config => {
+      // loaders: [
+      //   {
+      //     test: /\.(png|jpg|gif)$/,
+      //     loader: 'url-loader?limit=800&name=images/[name].[ext]'
+      //   }
+      // ],
     config.plugins = config.plugins.concat(
       [
         new webpack.DefinePlugin({
@@ -129,8 +141,7 @@ module.exports = {
             PAGE_LIST: JSON.stringify(pageList),
           }
         }),
-        IS_PROD
-          ? new webpack.optimize.RuntimeChunkPlugin({
+        IS_PROD ? new webpack.optimize.RuntimeChunkPlugin({
               name: "manifest"
             })
           : undefined

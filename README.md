@@ -70,6 +70,16 @@ LabelImage 是一款用于深度学习分割模型训练的图像标注工具（
 - # OR
 - $ yarn global add @vue/cli@3
 
+1.2 安装脚手css加载器
+# Sass
+npm install -D sass-loader sass
+
+# Less
+npm install -D less-loader less
+
+# Stylus
+npm install -D stylus-loader stylus
+
 2. 安装依赖组件
 - cd ./某个文件夹
 - yarn install   

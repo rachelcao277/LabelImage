@@ -9,6 +9,9 @@
     "module": "esNext",
     "moduleResolution": "node",
     "baseUrl": "./",
+    // "baseUrl": "/",
+    // "allowJs":true,// 编译时，允许有 js 文件
+    // "allowSyntheticDefaultImports":true,// 允许引入没有默认导出的模块
     "paths": {
       "@/*": ["src/*"],
       "src/*": ["src/*"],

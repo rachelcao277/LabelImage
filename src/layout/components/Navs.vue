@@ -33,7 +33,7 @@
         <span slot="title">
           <a-icon type="mail" /><span>标注管理</span>
         </span>
-        <a-menu-item key="/label">
+        <a-menu-item key="/dolabel/Index">
           标注数据集
         </a-menu-item>
 

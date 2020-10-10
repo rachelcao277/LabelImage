@@ -5,8 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "mock": "npm run serve --mock",
-    "build:loc": "vue-cli-service build --mode loc",
-    "build": "vue-cli-service build --mode prod",
+    "build:loc": "vue-cli-service build --no-clean --mode loc",
+    "build": "vue-cli-service build --no-clean --mode prod",
     "lint": "vue-cli-service lint",
     "report": "vue-cli-service build --report"
   },
