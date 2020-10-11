@@ -1250,6 +1250,7 @@ export default class LabelImage {
       labelManageCreateInfo.style.display = 'block';
       removeLabel.style.display = 'none';
     };
+
     closeAdd.onclick = function() {
       labelManageInfo.style.display = 'block';
       labelManageCreateInfo.style.display = 'none';

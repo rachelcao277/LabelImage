@@ -12,12 +12,30 @@
     </div>
 </div> -->
 
-<!-- <link rel="stylesheet" href="@/assets/css/preloader.css">
-<link rel="stylesheet" href="@/assets/css/style.css">
-<link rel="stylesheet" href="@/assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="@/assets/css/switch.css">  -->
+ <a-modal v-model="visibleSelectDatasetModal" title="请选择数据集" @ok="StartDoLabel">
+      <div><b>第一步:请选择数据集</b></div>
+      <a-select @change="GetLabels" style="width:90%;">
+        <a-select-option v-for="dset in DataSets" :key="dset.name">
+          {{ dset.name }}
+        </a-select-option>
+      </a-select>
 
-
+      <div><b>第二步:选择要标注的子分类文件夹</b></div>
+      <a-select
+          show-search
+          placeholder="请选择一个要标注的子分类文件夹"
+          option-filter-prop="children"
+          style="width: 90%;"
+          :filter-option="filterLabelsOption"
+          @focus="handleLabelsSelectFocus"
+          @blur="handleLabelsSelectBlur"
+          @change="handleLabelsSelectChange"
+        >
+        <a-select-option v-for="labelitem in LabelSets" :key="labelitem.LabelSetName">
+          {{ labelitem.LabelSetName }}
+        </a-select-option>
+      </a-select>
+ </a-modal>
 
 <div class="LabelImage">
     <div class="toolHead">
@@ -187,8 +205,12 @@ let annotate: LabelImage;
 export default Vue.extend({
   data() {
     return {
+      visibleSelectDatasetModal: true,
+      CurrentDatasetName: '当前标注的数据集名称',
+      CurrentDatasetLabelFolder: '当前标注的数据集子文件夹名称',
+      DataSets: [],
+      LabelSets: [],
       taskName: '标注任务名称',
-
       processIndex: 0,
       processSum: 0,
       imgIndex: 1, // 标定图片默认下标;
@@ -203,17 +225,93 @@ export default Vue.extend({
   },
 
   mounted() {
-    // let _this: any = null;
-    // _this = this;
-    // setTimeout(function() {
-    //   _this.initCanvas();
-    //   _this.initImage();
-    // }, 500);
-    this.initCanvas();
-    this.initImage();
+    this.LoadDatasets();
+    this.visibleSelectDatasetModal = true;
   },
 
   methods: {
+    handleLabelsSelectChange(value: string) {
+      this.CurrentDatasetLabelFolder = value;
+      // console.log(`selected ${value}`);
+    },
+    handleLabelsSelectBlur() {
+      console.log('blur');
+    },
+    handleLabelsSelectFocus() {
+      console.log('focus');
+    },
+    filterLabelsOption(input: string, option: any) {
+      return (
+        option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
+      );
+    },
+
+    // 执行查询
+    GetLabels(value: string) {
+      this.CurrentDatasetName = value;
+      this.$post({
+        url: '/DatasetManage/GetLabels',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: { 'DatasetName': this.CurrentDatasetName }
+      })
+        .then((res: any) => {
+          console.log(res);
+          if (res.success) {
+            this.LabelSets = res.data;
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+
+    },
+    // 加载数据集
+    LoadDatasets() {
+      this.$post({
+        url: '/DatasetManage/LoadDatasets',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        }
+      })
+        .then((res: any) => {
+          if (res.success) {
+            this.DataSets = res.data;
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+    },
+
+    StartDoLabel() {
+      // 已经初始化完毕这两个.
+      // this.CurrentDatasetName
+      // this.CurrentDatasetLabelFolder
+      // 加载所有的图片, 然后开始标注
+      this.$post({
+        url: '/DatasetManage/GetImages',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: { 'DatasetName': this.CurrentDatasetName, 'pageindex': 1, 'pagesize': 30000, 'LabelSetName': this.CurrentDatasetLabelFolder }
+      })
+        .then((res: any) => {
+          if (res.success) {
+            this.imgFiles = res.data;
+            console.log(this.imgFiles);
+            this.initCanvas();
+            this.initImage();
+
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+      // this.visibleSelectDatasetModal = false;
+    },
+
     initCanvas() {
       // import main from './js/operator';
       // 设置画布初始属性
@@ -292,7 +390,59 @@ export default Vue.extend({
         alert('openFolderInput click');
       }
     },
-
+    // 加载某张图片的标签
+    GetImageTags(imageFileName: string, callbak: Function) {
+      this.$post({
+        url: '/DatasetManage/GetImageTags',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: {
+          'DatasetName': this.CurrentDatasetName,
+          'LabelSetName': this.CurrentDatasetLabelFolder,
+          'ImageFileName': imageFileName
+        }
+      })
+        .then((res: any) => {
+          if (res.success) {
+            if (res.data === '') {
+              res.data = '[]';
+            }
+            if (callbak) {
+              callbak.call(this, JSON.parse(res.data));
+            }
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+    },
+    // 保存某张图片的标签
+    SaveImageTags(imageFileName: string, tags: any, callbak: Function) {
+      this.$post({
+        url: '/DatasetManage/SaveImageTags',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: {
+          'DatasetName': this.CurrentDatasetName,
+          'LabelSetName': this.CurrentDatasetLabelFolder,
+          'ImageFileName': imageFileName,
+          'Tags': JSON.stringify(tags)
+        }
+      })
+        .then((res: any) => {
+          if (res.success) {
+            // this.imgFiles = res.data;
+            if (callbak) {
+              callbak.call(this);
+            }
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+    },
     btnsaveJson_click() {
       const filename = this.taskName.split('.')[0] + '.json';
       annotate.Arrays.imageAnnotateMemory.length > 0 ? this.saveJson(annotate.Arrays.imageAnnotateMemory, filename) : alert('当前图片未有有效的标定数据');
@@ -302,34 +452,43 @@ export default Vue.extend({
       // processIndex.innerText = this.imgIndex + '';
       this.processIndex = this.imgIndex;
       // taskName.innerText = imgFiles[index].name || imgFiles[index].split('/')[3];
-      this.taskName = this.imgFiles[index].split('/')[3];
-      const content = localStorage.getItem(this.taskName);
+      const img = this.imgFiles[index] as any;
+      this.taskName = img.imagefile;
+      const httpurl = img.httpurl;
+
+      // const content = localStorage.getItem(this.taskName);// 加载标签
       // const img = imgFiles[index].name ? window.URL.createObjectURL(imgFiles[index]) : imgFiles[index];
-      const img = this.imgFiles[index];
-      content ? annotate.SetImage(img, JSON.parse(content)) : annotate.SetImage(img);
+      // content ? annotate.SetImage(httpurl, JSON.parse(content)) : annotate.SetImage(httpurl);
+      this.GetImageTags(this.taskName, function(this: any, tags: any) {
+        annotate.SetImage(httpurl, tags);
+      });
     },
     // 获取下一张图片
     nextBtn_onclick() {
-      annotate.Arrays.imageAnnotateMemory.length > 0 && localStorage.setItem(this.taskName, JSON.stringify(annotate.Arrays.imageAnnotateMemory)); // 保存已标定的图片信息
-      if (this.imgIndex >= this.imgSum) {
-        this.imgIndex = 1;
-        this.selectImage(0);
-      } else {
-        this.imgIndex++;
-        this.selectImage(this.imgIndex - 1);
-      }
+      // annotate.Arrays.imageAnnotateMemory.length > 0 && localStorage.setItem(this.taskName, JSON.stringify(annotate.Arrays.imageAnnotateMemory)); // 保存已标定的图片信息
+      this.SaveImageTags(this.taskName, annotate.Arrays.imageAnnotateMemory, function(this: any) {
+        if (this.imgIndex >= this.imgSum) {
+          this.imgIndex = 1;
+          this.selectImage(0);
+        } else {
+          this.imgIndex++;
+          this.selectImage(this.imgIndex - 1);
+        }
+      });
     },
 
     // 获取上一张图片
     prevBtn_onclick() {
-      annotate.Arrays.imageAnnotateMemory.length > 0 && localStorage.setItem(this.taskName, JSON.stringify(annotate.Arrays.imageAnnotateMemory)); // 保存已标定的图片信息
-      if (this.imgIndex === 1) {
-        this.imgIndex = this.imgSum;
-        this.selectImage(this.imgSum - 1);
-      } else {
-        this.imgIndex--;
-        this.selectImage(this.imgIndex - 1);
-      }
+      // annotate.Arrays.imageAnnotateMemory.length > 0 && localStorage.setItem(this.taskName, JSON.stringify(annotate.Arrays.imageAnnotateMemory)); // 保存已标定的图片信息
+      this.SaveImageTags(this.taskName, annotate.Arrays.imageAnnotateMemory, function(this: any) {
+        if (this.imgIndex === 1) {
+          this.imgIndex = this.imgSum;
+          this.selectImage(this.imgSum - 1);
+        } else {
+          this.imgIndex--;
+          this.selectImage(this.imgIndex - 1);
+        }
+      });
     },
 
 

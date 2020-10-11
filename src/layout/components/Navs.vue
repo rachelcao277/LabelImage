@@ -33,9 +33,13 @@
         <span slot="title">
           <a-icon type="mail" /><span>标注管理</span>
         </span>
-        <a-menu-item key="/dolabel/Index">
+        <a-menu-item key="/dolabel/index">
           标注数据集
         </a-menu-item>
+
+        <!-- <a-menu-item key="/dolabel/Index">
+          标注数据集真
+        </a-menu-item> -->
 
       </a-sub-menu>
 

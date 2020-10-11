@@ -10,6 +10,12 @@
                 </template>
         </a-card>
 
+      <a-modal v-model="visibleTagsManageModal" title="标签管理" @ok="SaveTags">
+          <h1>{{EditingTagsDatasetName}}</h1>
+          一行一个标签,保存在数据集下面Tags.txt文件中.
+          <textarea v-model="TagsData" style="height:400px; width:100%;"></textarea>
+      </a-modal>
+
         <a-modal v-model="visibleCreateModal" title="新建数据集" @ok="CreateDataset">
             <a-input placeholder="请输入数据集名称"  v-model="newDataset.name" max-length="20" style="border:1px solid red; margin-bottom:5px;"/>
             <a-input placeholder="简单的说明"  v-model="newDataset.description"  max-length="50" style=" margin-bottom:5px;"/>
@@ -78,7 +84,8 @@
 
 
                 <template slot="actions" class="ant-card-actions">
-                  <a-icon key="delete" type="delete" @click="visibleDeleteModal=true;WillDeleteDataSet = dset;WillDeleteDataSetIndex=indexx"/>
+                  <a-icon key="delete" type="delete" @click="visibleDeleteModal=true;WillDeleteDataSet=dset;WillDeleteDataSetIndex=indexx"/>
+                  <a-icon key="tags" type="tags" @click="visibleTagsManageModal=true;EditingTagsDatasetName=dset.name; GetTags()"/>
                 </template>
           </a-card>
         </template>
@@ -108,9 +115,12 @@ export default {
     return {
       visibleCreateModal: false,
       visibleDeleteModal: false,
+      visibleTagsManageModal: false,
       newDataset: {
         'name': '图片数据集', 'description': 'yolo5', 'imageurl': '@/assets/cover/封面5.jpg'
       },
+      TagsData: '',
+      EditingTagsDatasetName: '',
       WillDeleteDataSet: {},
       WillDeleteDataSetIndex: -1,
       ConfirmDeleteKey: '',
@@ -118,6 +128,7 @@ export default {
       DataSets: [
         // {"name":"Yolov5 数据集","description":"yolo5 121",  "imageurl":"https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"},
       ],
+      LabelsData: '',
       currentPageIndex: 1,
       pagesize: 30
     };
@@ -178,7 +189,44 @@ export default {
           }
         });
     },
-
+    // 取得标签
+    GetTags() {
+      this.$post({
+        url: '/DatasetManage/GetTags',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: { 'DatasetName': this.EditingTagsDatasetName }
+      })
+        .then(res => {
+          if (res.success) {
+            // this.$message.info(res.message);
+            this.TagsData = res.data;
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+    },
+    // 保存标签
+    SaveTags() {
+      // const _this = this;
+      this.$post({
+        url: '/DatasetManage/SaveTags',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: { 'DatasetName': this.EditingTagsDatasetName, 'TagsData': this.TagsData }
+      })
+        .then(res => {
+          if (res.success) {
+            this.$message.info(res.message);
+          } else {
+            this.$message.info(res.message);
+          }
+        });
+    },
     // showDeleteConfirm(dset) {
 
     //   // var _this  = this;
