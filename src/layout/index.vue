@@ -5,7 +5,7 @@
       <Navs></Navs>
       <div class="container" style="padding-left: 5px; padding-right: 0px;">
         <!-- <Breadcrumb></Breadcrumb> -->
-        <div class="view" style="margion:0px; padding:0px;">
+        <div class="view" style="margion:0px; padding:0px;overflow:auto;">
           <transition name="router-fade" mode="out-in">
             <router-view />
           </transition>

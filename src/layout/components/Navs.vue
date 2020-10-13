@@ -69,7 +69,7 @@
       </a-sub-menu>
 
 
-      <a-menu-item key="3">
+      <!-- <a-menu-item key="3">
         <a-icon type="inbox" />
         <span>Option 3</span>
       </a-menu-item>
@@ -83,7 +83,7 @@
         <a-menu-item key="6">
           Option 6
         </a-menu-item>
-      </a-sub-menu>
+      </a-sub-menu> -->
     </a-menu>
   </div>
 </template>

@@ -1,7 +1,7 @@
 <template>
-  <div class="header">
+  <div class="header" style="background-color:#1890ff;color:white;">
     <div class="header-logo">
-      <h3>在线标注系统</h3>
+      <b>在线标注系统</b>
     </div>
     <div class="right-head">
       <div class="head-user">
@@ -32,6 +32,7 @@ export default Vue.extend({
     width: 200px;
     height: 48px;
     font-size: 22px;
+    color:white;
     padding-left: 20px;
     .icon-logo {
       height: 22px;

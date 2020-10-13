@@ -302,11 +302,12 @@ export default Vue.extend({
       })
         .then((res: any) => {
           if (res.success) {
-            this.imgFiles = res.data;
+            // this.imgFiles = res.data;
             console.log(this.imgFiles);
             this.initCanvas();
             this.loadTags();
-            this.initImage();
+            // this.initImage();
+            this.changeFolder(res.data);
           } else {
             this.$message.info(res.message);
           }
@@ -365,8 +366,8 @@ export default Vue.extend({
         });
     },
     // 切换数据集或文件夹
-    changeFolder(e: any) {
-      this.imgFiles = e.files;
+    changeFolder(files: any) {
+      this.imgFiles = files;
       this.imgSum = this.imgFiles.length;
       this.processSum = this.imgSum;
       this.imgIndex = 1;
@@ -514,6 +515,7 @@ export default Vue.extend({
     },
     selectImage(index: number) {
       box.openBox('#loading', true);
+      // debugger;
       // processIndex.innerText = this.imgIndex + '';
       this.processIndex = this.imgIndex;
       // taskName.innerText = imgFiles[index].name || imgFiles[index].split('/')[3];
@@ -558,10 +560,10 @@ export default Vue.extend({
 
 
     // 初始化图片状态
-    initImage() {
-      this.selectImage(0);
-      this.processSum = this.imgSum;
-    },
+    // initImage() {
+    //   this.selectImage(0);
+    //   this.processSum = this.imgSum;
+    // },
     saveJson(data: any, filename: string) {
       if (!data) {
         alert('保存的数据为空');

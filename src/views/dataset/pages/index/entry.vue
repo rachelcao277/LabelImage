@@ -1,7 +1,7 @@
 <template>
     <a-row>
         <a-card hoverable class="ant-col ant-col-6" style="margin-left: 10px;">
-                <img slot="cover" style="width:100%; height:10vw; margin-bottom:10px; " alt="example" src="@/assets/cover/封面1.jpg" />
+                <img slot="cover" style="width:100%; height:10vw; margin-bottom:10px; " alt="example" src="./cover/cover1.jpg" />
                 <a-card-meta title="新增数据集" style="padding: 5px;" description="请点击下面的加号">
                 <!-- <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"  /> -->
                 </a-card-meta>
@@ -22,38 +22,38 @@
             <a-input placeholder="请选择图片" v-model="newDataset.imageurl"  style=" margin-bottom:5px;"/>
             <a-row>
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面1.jpg"  style="width:100%; height:10vw;"  @click="newDataset.imageurl='@/assets/cover/封面1.jpg'"/>
+                <img  src="./cover/cover1.jpg"  style="width:100%; height:10vw;"  @click="newDataset.imageurl=$event.currentTarget.src;"/>
               </a-card>
 
                <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面2.jpg"  style="width:100%; height:10vw; " @click="newDataset.imageurl='@/assets/cover/封面2.jpg'" />
+                <img  src="./cover/cover2.jpg"  style="width:100%; height:10vw; " @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
             </a-row>
             <a-row>
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面3.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl='@/assets/cover/封面3.jpg'" />
+                <img  src="./cover/cover3.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
 
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面4.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl='@/assets/cover/封面4.jpg'" />
+                <img  src="./cover/cover4.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
             </a-row>
              <a-row>
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面5.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl='@/assets/cover/封面5.jpg'" />
+                <img  src="./cover/cover5.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
 
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面6.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl='@/assets/cover/封面6.jpg'" />
+                <img  src="./cover/cover6.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
             </a-row>
              <a-row>
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面7.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl='@/assets/cover/封面7.jpg'" />
+                <img  src="./cover/cover7.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
 
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
-                <img  src="@/assets/cover/封面8.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl='@/assets/cover/封面8.jpg'" />
+                <img  src="./cover/cover8.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
             </a-row>
         </a-modal>
@@ -117,7 +117,7 @@ export default {
       visibleDeleteModal: false,
       visibleTagsManageModal: false,
       newDataset: {
-        'name': '图片数据集', 'description': 'yolo5', 'imageurl': '@/assets/cover/封面5.jpg'
+        'name': '图片数据集', 'description': 'yolo5', 'imageurl': ''
       },
       TagsData: '',
       EditingTagsDatasetName: '',
