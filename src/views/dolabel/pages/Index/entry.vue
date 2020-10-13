@@ -38,54 +38,17 @@
  </a-modal>
 
 <div class="LabelImage">
-    <div class="toolHead">
-        <div class="toolMuster">
-            <div class="logoGroup">
-                <div class="logo"></div>
-                <div class="logoTitle">LabelImage</div>
-            </div>
-            <div class="selectOperation">
-                <div class="pageControl">
-                    <div class="pagePrev pageSwitch inline-block" title="上一张" @click="prevBtn_onclick"></div>
-                    <div class="pageInfo inline-block">
-                        <p class="pageName" title="图片名称">{{taskName}}</p>
-                        <p class="nameProcess" title="图片位置"><span class="processIndex">{{processIndex}}</span> / <span class="processSum">{{processSum}}</span></p>
-                    </div>
-                    <div class="pageNext pageSwitch inline-block" title="下一张"  @click="nextBtn_onclick"></div>
-                </div>
-            </div>
-            <div class="assistTool">
-                <div class="generalFeatures">
-                    <p class="featureList crossLine" title="十字线开关">
-                        <input class="mui-switch mui-switch-anim" type="checkbox">
-                        <span>十字线</span>
-                    </p>
-                    <p class="featureList labelShower focus" title="标注结果显示开关">
-                        <input class="mui-switch mui-switch-anim" type="checkbox">
-                        <span>标注结果</span>
-                    </p>
-                    <p class="featureList screenShot" title="标注内容截图">
-                        <i class="bg"></i>
-                        <span>快照</span>
-                    </p>
-                    <p class="featureList screenFull" title="全屏开关">
-                        <i class="bg"></i>
-                        <span>全屏</span>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <div class="canvasMain">
         <!--标注功能工具集-->
         <div class="toolFeatures">
             <div class="assistFeatures">
-                <p class="openFolder" title="打开文件夹" @click="openFolder_click"></p>
-                <p class="saveJson" title="生成Json并保存到本地" @click="btnsaveJson_click"></p>
-                <input class="openFolderInput" type="file" multiple onchange="changeFolder(this)" hidden>
+              <p class="openFolder" title="打开文件夹" @click="openFolder_click"></p>
+              <input class="openFolderInput" type="file" multiple onchange="changeFolder(this)" hidden>
+                <!-- <p class="saveJson" title="生成Json并保存到本地" @click="btnsaveJson_click"></p> -->
             </div>
-            <div class="separator"></div>
+            <!-- <div class="separator"></div> -->
             <div id="tools" >
                 <div class="toolSet toolDrag focus" @click="tools_toolDrag" title="图片拖拽"></div>
                 <div class="toolSet toolTagsManager" @click="tools_toolTagsManager" ><span class="icon-tags"></span></div>
@@ -171,7 +134,46 @@
             <div class="closeLabelManage"><span class="icon-remove-sign"></span></div>
         </div>
     </div>
+    <div class="toolHead">
+        <div class="toolMuster">
+            <div class="logoGroup">
+               <!-- <div class="logoTitle">切换数据集或文件夹</div> -->
+                <!-- <div class="logo"></div>-->
+                <!-- <div class="logoTitle"></div> -->
+            </div>
+            <div class="selectOperation">
+                <div class="pageControl">
+                    <div class="pagePrev pageSwitch inline-block" title="上一张" @click="prevBtn_onclick"></div>
+                    <div class="pageInfo inline-block">
+                        <p class="pageName" title="图片名称">{{taskName}}</p>
+                        <p class="nameProcess" title="图片位置"><span class="processIndex">{{processIndex}}</span> / <span class="processSum">{{processSum}}</span></p>
+                    </div>
+                    <div class="pageNext pageSwitch inline-block" title="下一张"  @click="nextBtn_onclick"></div>
+                </div>
+            </div>
+            <div class="assistTool">
+                <div class="generalFeatures">
 
+                    <p class="featureList crossLine" title="十字线开关">
+                        <input class="mui-switch mui-switch-anim" type="checkbox">
+                        <span>十字线</span>
+                    </p>
+                    <p class="featureList labelShower focus" title="标注结果显示开关">
+                        <input class="mui-switch mui-switch-anim" type="checkbox">
+                        <span>标注结果</span>
+                    </p>
+                    <p class="featureList screenShot" title="标注内容截图">
+                        <i class="bg"></i>
+                        <span>快照</span>
+                    </p>
+                    <p class="featureList screenFull" title="全屏开关">
+                        <i class="bg"></i>
+                        <span>全屏</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="mask_box" hidden></div>
     <div class="loading_box" hidden id="loading">
         <div class="loaderSpinner">
@@ -303,27 +305,30 @@ export default Vue.extend({
             this.imgFiles = res.data;
             console.log(this.imgFiles);
             this.initCanvas();
+            this.loadTags();
             this.initImage();
-
           } else {
             this.$message.info(res.message);
           }
         });
-      // this.visibleSelectDatasetModal = false;
+      this.visibleSelectDatasetModal = false;
     },
 
     initCanvas() {
-      // import main from './js/operator';
+      if (annotate) {
+        return; // 如果已经初始化过的不再初始化.
+      }
+      this.$message.info('快捷键(A)上一张,(D)下一张,(S)保存,(空格)继续绘制');
       // 设置画布初始属性
       // const canvasMain = document.querySelector('.canvasMain') as HTMLDivElement;
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       // const resultGroup = document.querySelector('.resultGroup') as HTMLDivElement;
+      document.addEventListener('keyup', this.ShortcutKey); // 绑定快捷键
       // debugger;
       // 设置画布宽高背景色
       canvas.width = canvas.clientWidth;
       canvas.height = canvas.clientHeight;
       canvas.style.background = '#8c919c';
-
       annotate = new LabelImage({
         canvas: canvas,
         scaleCanvas: document.querySelector('.scaleCanvas') as HTMLDivElement,
@@ -339,9 +344,25 @@ export default Vue.extend({
         toolTagsManager: document.querySelector('.toolTagsManager') as HTMLDivElement,
         historyGroup: document.querySelector('.historyGroup') as HTMLDivElement
       });
-
-      console.log(annotate);
-
+    },
+    loadTags() {
+      this.$post({
+        url: '/DatasetManage/GetTags',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: { 'DatasetName': this.CurrentDatasetName, 'pageindex': 1, 'pagesize': 30000, 'LabelSetName': this.CurrentDatasetLabelFolder }
+      })
+        .then((res: any) => {
+          if (res.success) {
+            const Tags = res.data.replace('\r\n', '\n').split('\n');
+            console.log(Tags);
+            annotate.SetTags(Tags);
+          } else {
+            this.$message.info(res.message);
+          }
+        });
     },
     // 切换数据集或文件夹
     changeFolder(e: any) {
@@ -350,6 +371,36 @@ export default Vue.extend({
       this.processSum = this.imgSum;
       this.imgIndex = 1;
       this.selectImage(0);
+    },
+
+    // 快捷键
+    ShortcutKey(e: KeyboardEvent) {
+      console.log(e);
+      // 空格键 继续执行刚才的标注
+      if (e.key === ' ') {
+        e.preventDefault();
+        // alert('空格');
+        annotate.SetFeatures(this.currentFeatures, true);
+      }
+      // D键 下一张
+      if (e.key === 'd') {
+        e.preventDefault();
+        // alert('D');
+        this.nextBtn_onclick();
+      }
+      // A键 上一张
+      if (e.key === 'a') {
+        e.preventDefault();
+        // alert('A');
+        this.prevBtn_onclick();
+      }
+      // 保存键 保存键
+      if (e.key === 's') {
+        e.preventDefault();
+        // alert('S ');
+        this.SaveImageTags(this.taskName, annotate.Arrays.imageAnnotateMemory, function(this: any) { });
+
+      }
     },
     // <div class="toolSet toolDrag focus" @click="tools_toolDrag" title="图片拖拽"></div>
     // <div class="toolSet toolTagsManager" @click="tools_toolTagsManager" ><span class="icon-tags"></span></div>
@@ -364,31 +415,36 @@ export default Vue.extend({
     },
     // 图片拖拽
     tools_toolDrag(e: MouseEvent) {
+      this.currentFeatures = 'dragOn';
       this.toggleTools(e.target as HTMLDivElement);
       annotate.SetFeatures('dragOn', true);
     },
     // 标签管理工具
     tools_toolTagsManager(e: any) {
+      this.currentFeatures = 'tagsOn';
       this.toggleTools(e.target as HTMLDivElement);
       annotate.SetFeatures('tagsOn', true);
     },
     // 矩形
     tools_toolRect(e: any) {
+      this.currentFeatures = 'rectOn';
       this.toggleTools(e.target as HTMLDivElement);
       annotate.SetFeatures('rectOn', true);
     },
     // 多边形
     tools_toolPolygon(e: any) {
+      this.currentFeatures = 'polygonOn';
       this.toggleTools(e.target as HTMLDivElement);
       annotate.SetFeatures('polygonOn', true);
     },
 
     openFolder_click() {
-      const openFolderInput = document.querySelector('.openFolderInput') as HTMLInputElement;
-      if (openFolderInput) {
-        openFolderInput.click();
-        alert('openFolderInput click');
-      }
+      this.visibleSelectDatasetModal = true;
+      // const openFolderInput = document.querySelector('.openFolderInput') as HTMLInputElement;
+      // if (openFolderInput) {
+      //   openFolderInput.click();
+      //   alert('openFolderInput click');
+      // }
     },
     // 加载某张图片的标签
     GetImageTags(imageFileName: string, callbak: Function) {
@@ -419,21 +475,30 @@ export default Vue.extend({
     },
     // 保存某张图片的标签
     SaveImageTags(imageFileName: string, tags: any, callbak: Function) {
-      this.$post({
-        url: '/DatasetManage/SaveImageTags',
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json;charset=UTF-8'
-        },
-        params: {
-          'DatasetName': this.CurrentDatasetName,
-          'LabelSetName': this.CurrentDatasetLabelFolder,
-          'ImageFileName': imageFileName,
-          'Tags': JSON.stringify(tags)
-        }
-      })
+
+      // {
+      //   url: '/DatasetManage/SaveImageTags',
+      //   method: 'post',
+      //   headers: {
+      //     'Content-Type': 'application/json;charset=UTF-8'
+      //   },
+      //   params: {
+      //     'DatasetName': this.CurrentDatasetName,
+      //     'LabelSetName': this.CurrentDatasetLabelFolder,
+      //     'ImageFileName': imageFileName,
+      //     'Tags': JSON.stringify(tags)
+      //   }
+      // }
+      // post 模式就安全稳定的很多.
+      const params = new FormData();
+      params.append('DatasetName', this.CurrentDatasetName);
+      params.append('LabelSetName', this.CurrentDatasetLabelFolder);
+      params.append('ImageFileName', imageFileName);
+      params.append('Tags', JSON.stringify(tags));
+      this.$post.post('/DatasetManage/SaveImageTags', params)
         .then((res: any) => {
           if (res.success) {
+            this.$message.info('保存成功');
             // this.imgFiles = res.data;
             if (callbak) {
               callbak.call(this);

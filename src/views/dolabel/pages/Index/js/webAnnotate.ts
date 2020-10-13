@@ -16,6 +16,26 @@ class Point {
   }
 }
 
+class Yolo {
+  labelname='';
+  x=0;
+  y=0;
+  w=0;
+  h=0;
+
+  // labelname 类型
+  // x是矩形中心点归一化后的 x坐标
+  // y是矩形中心点归一化后的 y坐标
+  // w是矩形归一化后的宽度
+  // h是矩形归一化后的高度
+  constructor(labelname: string, x: number, y: number, w: number, h: number) {
+    this.labelname = labelname;
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+  }
+}
 
 class RectMask {
   xMin= 0;
@@ -35,12 +55,14 @@ class LabelItem {
   visibility = false;
 }
 
+// 一个标注矩形框框就是一个Annotate
 class Annotate {
-  content: Array<Point> = [];
-  labels = new LabelItem();
-  labelLocation = new Point(0, 0);// this.ComputerLabelLocation(rectMask),
-  rectMask = new RectMask();
-  contentType = '';
+  declare content: Array<Point>;
+  declare yolo: Yolo; // yolo格式的数据,已转换好
+  declare labels: LabelItem;
+  declare labelLocation: Point;// this.ComputerLabelLocation(rectMask),
+  declare rectMask: RectMask;
+  declare contentType: string;
 }
 
 class Nodes {
@@ -112,6 +134,8 @@ class LabelArrayItem {
 
 
 export default class LabelImage {
+  // 标签集合
+  Tags: Array<LabelItem> = [];
   // 画布宽度
   cWidth = 0;
   // 画布高度
@@ -222,8 +246,84 @@ export default class LabelImage {
     'labelOn': true,
   };
 
+  // # 转换成yolo格式的数据集,
+  // # size (w,h) 图像的宽和高
+  // # points (左上角的点, 右上角的点, 右下角的点, 左下角的点)
+  ConvertToYolo(labelname: string, imgwidth: number, imgheight: number, points: Array<Point>) {
+    let xmin = 10000000;
+    let xmax = 0;
+
+    let ymin = 10000000;
+    let ymax = 0;
+
+    points.forEach((pointx: Point) => {
+      console.log(pointx);
+      if (xmin > pointx.x) {
+        xmin = pointx.x;
+      }
+      if (xmax < pointx.x) {
+        xmax = pointx.x;
+      }
+      if (ymin > pointx.y) {
+        ymin = pointx.y;
+      }
+      if (ymax < pointx.y) {
+        ymax = pointx.y;
+      }
+    });
+
+    // console.log('ymax=>' + ymax);
+    // console.log('ymin=>' + ymin);
+    // console.log('xmax=>' + xmax);
+    // console.log('xmin=>' + xmin);
+
+    const dw = 1.0 / (imgwidth);// # 有的人运行这个脚本可能报错，说不能除以0什么的，你可以变成dw = 1./((size[0])+0.1)
+    const dh = 1.0 / (imgheight); // # 有的人运行这个脚本可能报错，说不能除以0什么的，你可以变成dh = 1./((size[0])+0.1)
+    // let centerPointX = (xmin + xmax) / 2.0 - 1;
+    // let centerPointY = (ymin + ymax) / 2.0 - 1;
+    let xcenter = xmin + (xmax - xmin + 1) / 2;
+    let ycenter = ymin + (ymax - ymin + 1) / 2;
+    // console.log('xcenter=>' + xcenter);
+    // console.log('ycenter=>' + ycenter);
+    let w = xmax - xmin;
+    let h = ymax - ymin;
+    xcenter = xcenter * dw;
+    w = w * dw;
+    ycenter = ycenter * dh;
+    h = h * dh;
+
+    // console.log('dw xcenter=>' + xcenter);
+    // console.log('dw ycenter=>' + ycenter);
+
+    // console.log('dw w=>' + w);
+    // console.log('dw h=>' + h);
+
+    console.log('labelname=>' + labelname);
+    // 取5位小数
+    xcenter = +xcenter.toFixed(5);
+    ycenter = +ycenter.toFixed(5);
+    w = +w.toFixed(5);
+    h = +h.toFixed(5);
+
+    return new Yolo(labelname, xcenter, ycenter, w, h);
+  }
+
+  // 设置标签分类集
+  SetTags(tags: Array<LabelItem>) {
+    this.Tags = [];
+    tags.forEach((item: any) => {
+      // debugger;
+      const lableitem = new LabelItem();
+      lableitem.labelName = item;
+      lableitem.labelColor = 'red';
+      lableitem.labelColorRGB = '255,0,0';
+      lableitem.visibility = true;
+      this.Tags.push(lableitem);
+    });
+  }
   // __self:LabelImage = this;
   constructor(options: any) {
+
     // 画布宽度
     this.cWidth = options.canvas.clientWidth;
     // 画布高度
@@ -287,6 +387,7 @@ export default class LabelImage {
     document.addEventListener('webkitfullscreenchange', this.ScreenViewChange.bind(this));
     document.addEventListener('mozfullscreenchange', this.ScreenViewChange.bind(this));
     document.addEventListener('msfullscreenchange', this.ScreenViewChange.bind(this));
+    // document.addEventListener('keyup', this.ShortcutKey.bind(this));
     // _nodes.canvas.addEventListener('mousemove', (e: MouseEvent) => { this.CanvasMouseMove(e); });
     _nodes.resultGroup.addEventListener('mouseover', this.ResultListOperation.bind(this));
     _nodes.toolTagsManager.addEventListener('click', this.ManageLabels.bind(this));
@@ -594,7 +695,7 @@ export default class LabelImage {
             this.rectX = this.mouseX;
             this.rectY = this.mouseY;
 
-            console.log('MouseMoveDrawRect addEventListener 绑定绘制矩形框的事件');
+            // console.log('MouseMoveDrawRect addEventListener 绑定绘制矩形框的事件');
 
             // this.Nodes.canvas.onMouseMoveDrawRectFn = this.MouseMoveDrawRect.bind(this);// 为了后面能够移除掉,所以存起来.
             this.Nodes.canvas.addEventListener('mousemove', this.Nodes.canvas.onMouseMoveDrawRectFn);
@@ -846,7 +947,7 @@ export default class LabelImage {
 
   // ----鼠标移动绘制矩形事件
   MouseMoveDrawRect(e: any) {
-    console.log('MouseMoveDrawRect 鼠标移动绘制矩形');
+    // console.log('MouseMoveDrawRect 鼠标移动绘制矩形');
     this.GetMouseInCanvasLocation(e);
     this.DrawSavedAnnotateInfoToShow();
     this.Nodes.ctx.strokeStyle = '#ff0000';
@@ -857,7 +958,7 @@ export default class LabelImage {
 
   // ----绘制矩形时鼠标抬起后 移除监听函数
   MouseUpRemoveDrawRect() {
-    console.log('MouseUpRemoveDrawRect 执行鼠标抬起后任务1');
+    // console.log('MouseUpRemoveDrawRect 执行鼠标抬起后任务1');
     if (this.mouseX - this.rectX >= 5 || this.rectX - this.mouseX >= 5) { // 判断矩形绘制距离大于五才认定为有效绘制
       // 保存绘图数据
       this.CreateNewResultList(this.mouseX, this.mouseY, 'rect');
@@ -867,7 +968,7 @@ export default class LabelImage {
       this.RecordOperation('add', '绘制矩形框', index, JSON.stringify(this.Arrays.imageAnnotateMemory[index]));
     }
 
-    console.log('MouseUpRemoveDrawRect 执行鼠标抬起后任务2 移除监听函数');
+    // console.log('MouseUpRemoveDrawRect 执行鼠标抬起后任务2 移除监听函数');
     // this.Nodes.canvas.removeEventListener('mousemove', this.MouseMoveDrawRect.bind(this));
     // this.Nodes.canvas.removeEventListener('mouseup', this.MouseUpRemoveDrawRect.bind(this));
 
@@ -1109,6 +1210,7 @@ export default class LabelImage {
     }
   }
 
+
   // ----获取已经创建的标签列表
   getCreatedLabels(node: HTMLElement, pageY: number, resultIndex: number) {
     let _self: any = null;
@@ -1119,7 +1221,9 @@ export default class LabelImage {
     const selectLabelTip = resultSelectLabel.querySelector('.selectLabelTip') as HTMLElement;
     // 加载标签数据
     selectLabelUL.innerHTML = '';
-    const labels = !localStorage.getItem('labels') ? [] : JSON.parse(localStorage.getItem('labels') + '');
+
+    // const labels = !localStorage.getItem('labels') ? [] : JSON.parse(localStorage.getItem('labels') + '');
+    const labels = _self.Tags;
     if (labels.length > 0) {
       selectLabelTip.style.display = 'none';
       const fragment = document.createDocumentFragment();
@@ -1242,7 +1346,7 @@ export default class LabelImage {
     }
     // 添加标签事件
     labelManageCreate.onclick = function() {
-      // console.log('labelManageCreate.onclick');
+      // // console.log('labelManageCreate.onclick');
       flag = false;
       labelManageTitle.innerText = '创建标签';
       addLabelName.value = '';
@@ -1698,8 +1802,10 @@ export default class LabelImage {
       mask.width = item.rectMask.width / this.scale;
       mask.height = item.rectMask.height / this.scale;
 
+      // debugger;
       const anno: Annotate = new Annotate();
       anno.content = content;
+      anno.yolo = this.ConvertToYolo(item.labels.labelName, this.iWidth, this.iHeight, content);
       anno.rectMask = mask;
       anno.labels = item.labels;
       anno.labelLocation = this.ComputerLabelLocation(mask);

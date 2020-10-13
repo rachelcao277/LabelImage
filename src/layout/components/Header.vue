@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-logo">
-      <h2>Header Logo</h2>
+      <h3>在线标注系统</h3>
     </div>
     <div class="right-head">
       <div class="head-user">

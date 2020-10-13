@@ -3,9 +3,9 @@
     <Header></Header>
     <div class="main">
       <Navs></Navs>
-      <div class="container">
+      <div class="container" style="padding-left: 5px; padding-right: 0px;">
         <!-- <Breadcrumb></Breadcrumb> -->
-        <div class="view">
+        <div class="view" style="margion:0px; padding:0px;">
           <transition name="router-fade" mode="out-in">
             <router-view />
           </transition>
