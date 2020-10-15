@@ -1,7 +1,7 @@
 <template>
     <a-row>
         <a-card hoverable class="ant-col ant-col-6" style="margin-left: 10px;">
-                <img slot="cover" style="width:100%; height:10vw; margin-bottom:10px; " alt="example" src="./cover/cover1.jpg" />
+                <img slot="cover" style="width:100%; height:10vw; margin-bottom:10px; " alt="example" src="./cover/cover8.jpg" />
                 <a-card-meta title="新增数据集" style="padding: 5px;" description="请点击下面的加号">
                 <!-- <a-avatar slot="avatar" src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"  /> -->
                 </a-card-meta>
@@ -19,8 +19,8 @@
         <a-modal v-model="visibleCreateModal" title="新建数据集" @ok="CreateDataset">
             <a-input placeholder="请输入数据集名称"  v-model="newDataset.name" max-length="20" style="border:1px solid red; margin-bottom:5px;"/>
             <a-input placeholder="简单的说明"  v-model="newDataset.description"  max-length="50" style=" margin-bottom:5px;"/>
-            <a-input placeholder="请选择图片" v-model="newDataset.imageurl"  style=" margin-bottom:5px;"/>
-            <a-row>
+            <!-- <a-input placeholder="请选择图片" v-model="newDataset.imageurl"  style=" margin-bottom:5px;"/> -->
+            <!-- <a-row>
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
                 <img  src="./cover/cover1.jpg"  style="width:100%; height:10vw;"  @click="newDataset.imageurl=$event.currentTarget.src;"/>
               </a-card>
@@ -55,7 +55,7 @@
               <a-card hoverable class="ant-col ant-col-11" style="margin: 1%;">
                 <img  src="./cover/cover8.jpg"  style="width:100%;  height:10vw;" @click="newDataset.imageurl=$event.currentTarget.src;" />
               </a-card>
-            </a-row>
+            </a-row> -->
         </a-modal>
 
         <a-modal v-model="visibleDeleteModal" title="危险操作警告!" @ok="handlerDeleteDataset">
@@ -68,11 +68,11 @@
         </a-modal>
 
         <template v-for="(dset,indexx) in DataSets">
-          <a-card v-bind:key="indexx" hoverable class="ant-col ant-col-6" style="margin-left: 10px;">
+          <a-card v-bind:key="indexx" hoverable class="ant-col ant-col-6" style="margin-left: 10px; margin-bottom: 10px;">
 
 
                 <router-link slot="cover" :to="{ name: 'DatasetImagemanage', params: { DatasetName: dset.name} }" replace >
-                  <img style="width:100%; height:10vw; margin-bottom:10px;" :alt="dset.name" :src="dset.imageurl" />
+                  <img style="width:100%; height:10vw; margin-bottom:10px;" :alt="dset.name" src="./cover/cover8.jpg" /> <!-- :src="dset.imageurl"  -->
                 </router-link>
 
                 <router-link :to="{ name: 'DatasetImagemanage', params: { DatasetName: dset.name} }" replace >
@@ -82,11 +82,16 @@
                   </a-card-meta>
                 </router-link>
 
-
                 <template slot="actions" class="ant-card-actions">
-                  <a-icon key="delete" type="delete" @click="visibleDeleteModal=true;WillDeleteDataSet=dset;WillDeleteDataSetIndex=indexx"/>
-                  <a-icon key="tags" type="tags" @click="visibleTagsManageModal=true;EditingTagsDatasetName=dset.name; GetTags()"/>
+                  <a-icon key="delete" type="delete" title="标签管理"  @click="visibleDeleteModal=true;WillDeleteDataSet=dset;WillDeleteDataSetIndex=indexx"/>
+                  <a-icon key="tags" type="tags" title="标签管理" @click="visibleTagsManageModal=true;EditingTagsDatasetName=dset.name; GetTags()"/>
                 </template>
+                <!-- <template slot="actions" class="ant-card-actions">
+                  <a-icon type="caret-right"  click="StartAutoGrab(dset)" title="运行"/>
+                  <a-icon type="pause" click="StopAutoGrab(dset)" title="停止" />
+                  <a-icon type="code"  click="GetProcessLog(dset)" title="查看日志"/>
+                  <a-icon type="sync"  click="RefreshState(dset)" title="刷新" />
+               </template> -->
           </a-card>
         </template>
     </a-row>
@@ -117,7 +122,7 @@ export default {
       visibleDeleteModal: false,
       visibleTagsManageModal: false,
       newDataset: {
-        'name': '图片数据集', 'description': 'yolo5', 'imageurl': ''
+        'name': '', 'description': '', 'imageurl': ''
       },
       TagsData: '',
       EditingTagsDatasetName: '',

@@ -103,7 +103,7 @@ class Nodes {
   // 撤销，返回上一步
   // returnUp: options.returnUp;
   // 标签管理
-  toolTagsManager: any = null;
+  // toolTagsManager: any = null;
   // 历史记录列表
   historyGroup: any = null;
 }
@@ -257,7 +257,7 @@ export default class LabelImage {
     let ymax = 0;
 
     points.forEach((pointx: Point) => {
-      console.log(pointx);
+      // console.log(pointx);
       if (xmin > pointx.x) {
         xmin = pointx.x;
       }
@@ -298,7 +298,7 @@ export default class LabelImage {
     // console.log('dw w=>' + w);
     // console.log('dw h=>' + h);
 
-    console.log('labelname=>' + labelname);
+    // console.log('labelname=>' + labelname);
     // 取5位小数
     xcenter = +xcenter.toFixed(5);
     ycenter = +ycenter.toFixed(5);
@@ -309,7 +309,7 @@ export default class LabelImage {
   }
 
   // 设置标签分类集
-  SetTags(tags: Array<LabelItem>) {
+  SetTags(tags: Array<any>) {
     this.Tags = [];
     tags.forEach((item: any) => {
       // debugger;
@@ -357,7 +357,7 @@ export default class LabelImage {
     // 撤销，返回上一步
     // returnUp: options.returnUp,
     // 标签管理
-    this.Nodes.toolTagsManager = options.toolTagsManager;
+    // this.Nodes.toolTagsManager = options.toolTagsManager;
     // 历史记录列表
     this.Nodes.historyGroup = options.historyGroup;
 
@@ -390,7 +390,7 @@ export default class LabelImage {
     // document.addEventListener('keyup', this.ShortcutKey.bind(this));
     // _nodes.canvas.addEventListener('mousemove', (e: MouseEvent) => { this.CanvasMouseMove(e); });
     _nodes.resultGroup.addEventListener('mouseover', this.ResultListOperation.bind(this));
-    _nodes.toolTagsManager.addEventListener('click', this.ManageLabels.bind(this));
+    // _nodes.toolTagsManager.addEventListener('click', this.ManageLabels.bind(this));
 
 
     // 初始化事件绑定函数, 为了能移除掉所以保存起来
@@ -1179,13 +1179,13 @@ export default class LabelImage {
         const target = event.target as HTMLElement;
         const pageY = event.pageY - 35;
         switch (target.classList[0]) {
-          case 'deleteLabel':
+          case 'deleteLabel': // headDelete
             _self.DeleteSomeResultLabel(i);
             break;
-          case 'editLabelName':
+          case 'editLabelName': // headEdit
             _self.getCreatedLabels(resultList[i], pageY, i);
             break;
-          case 'result_Name':
+          case 'result_Name': //
             for (let j = 0; j < resultList.length; j++) {
               resultList[j].classList.remove('active');
             }
@@ -1211,11 +1211,29 @@ export default class LabelImage {
   }
 
 
-  // ----获取已经创建的标签列表
   getCreatedLabels(node: HTMLElement, pageY: number, resultIndex: number) {
     let _self: any = null;
     _self = this;
-    const resultSelectLabel = document.querySelector('.resultSelectLabel') as HTMLElement;
+    const resultSelectLabel = document.querySelector('.resultSelectLabel') as any;
+    resultSelectLabel.pageY = pageY;
+    // resultSelectLabel.node = node;
+    resultSelectLabel.resultIndex = resultIndex;
+
+    _self.renderLabels();
+
+  }
+  // ----获取已经创建的标签列表
+  renderLabels() {
+    // if (atuoHide === undefined) {
+    //   atuoHide = true;
+    // }
+    let _self: any = null;
+    _self = this;
+    const resultSelectLabel = document.querySelector('.resultSelectLabel') as any;
+    const pageY: number = resultSelectLabel.pageY;
+    const resultIndex: number = resultSelectLabel.resultIndex;
+
+
     const selectLabelUL = resultSelectLabel.querySelector('.selectLabel-ul') as HTMLElement; // 标签选择UL
     const closeLabel = resultSelectLabel.querySelector('.closeLabelManage') as HTMLElement;
     const selectLabelTip = resultSelectLabel.querySelector('.selectLabelTip') as HTMLElement;
@@ -1262,15 +1280,18 @@ export default class LabelImage {
       selectLabelTip.style.display = 'block';
     }
     // 判断是否显示标签管理
+    // if (atuoHide === true) {
     if (resultSelectLabel.className.indexOf('focus') === -1) {
       resultSelectLabel.classList.remove('blur');
       resultSelectLabel.classList.add('focus');
       resultSelectLabel.style.top = pageY + 'px';
-    } else {
-      resultSelectLabel.classList.remove('focus');
-      resultSelectLabel.classList.add('blur');
     }
-
+    // else
+    // {
+    //   resultSelectLabel.classList.remove('focus');
+    //   resultSelectLabel.classList.add('blur');
+    // }
+    // }
     // 关闭标签管理
     closeLabel.onclick = function() {
       resultSelectLabel.classList.remove('focus');

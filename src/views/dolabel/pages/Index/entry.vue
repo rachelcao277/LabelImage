@@ -37,6 +37,7 @@
       </a-select>
  </a-modal>
 
+
 <div class="LabelImage">
 
 
@@ -51,7 +52,7 @@
             <!-- <div class="separator"></div> -->
             <div id="tools" >
                 <div class="toolSet toolDrag focus" @click="tools_toolDrag" title="图片拖拽"></div>
-                <div class="toolSet toolTagsManager" @click="tools_toolTagsManager" ><span class="icon-tags"></span></div>
+                <!-- <div class="toolSet toolTagsManager" @click="tools_toolTagsManager" ><span class="icon-tags"></span></div> -->
                 <div class="toolSet toolRect" @click="tools_toolRect" title="矩形工具"></div>
                 <div class="toolSet toolPolygon" @click="tools_toolPolygon" title="多边形工具"></div>
             </div>
@@ -85,6 +86,11 @@
                 <!--    选择标签操作    -->
                 <div class="resultSelectLabel">
                     <p class="selectLabelTip" hidden>请先创建标签</p>
+                    <div>
+                      <a-input-search v-model="SearchTagKey" enter-button placeholder="输入过滤或新增"  @search="onSearchTags"  style="width:60%;" />
+                      <!-- <input name="" value="" style="width:50%; border:solid 1px rgb(117, 140, 150);" /> -->
+                      <a-button shape="circle" title="如果标签不存在,可以输入完毕后点击此按钮进行新增" @click="onAddTagClick">+</a-button>
+                    </div>
                     <ul class="selectLabel-ul">
                     </ul>
                     <div class="closeLabelManage"><span class="icon-remove-sign"></span></div>
@@ -206,24 +212,38 @@ let annotate: LabelImage;
 
 export default Vue.extend({
   data() {
-    return {
+    const resultObject: {
+        visibleSelectDatasetModal: boolean;
+        CurrentDatasetName: string;
+        CurrentDatasetLabelFolder: string;
+        DataSets: Array<string>;
+        LabelSets: Array<string>;
+        Tags: Array<string>;
+        taskName: string;
+        processIndex: number;
+        processSum: number;
+        imgIndex: number; // 标定图片默认下标;
+        imgSum: number; // 选择图片总数;
+        SearchTagKey: string;
+        imgFiles: Array<string>;
+    } = {
       visibleSelectDatasetModal: true,
       CurrentDatasetName: '当前标注的数据集名称',
       CurrentDatasetLabelFolder: '当前标注的数据集子文件夹名称',
       DataSets: [],
       LabelSets: [],
+      Tags: [],
       taskName: '标注任务名称',
       processIndex: 0,
       processSum: 0,
       imgIndex: 1, // 标定图片默认下标;
       imgSum: 10, // 选择图片总数;
+      SearchTagKey: '',
       imgFiles: [
-        'https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2pwZy9QbjRTbTBSc0F1aEFZNGpOOEtTa1pJV3dpY1pkWUZ6Y0lWdHRLaWJPYUQzdWFSRkdUYllwaWIxTFEzWWtTT0dma2ZLR3IzaWJzc0lYT0N4TWxNYURrS1N1YWcvNjQw?x-oss-process=image/format,png',
-        '/static/dataset/厨余垃圾/艾草/艾草_0.jpg',
-        '/static/dataset/厨余垃圾/艾草/艾草_1.jpg',
-        '/static/dataset/厨余垃圾/艾草/艾草_2.jpg',
+        'https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tbWJpei5xcGljLmNuL21tYml6X2pwZy9QbjRTbTBSc0F1aEFZNGpOOEtTa1pJV3dpY1pkWUZ6Y0lWdHRLaWJPYUQzdWFSRkdUYllwaWIxTFEzWWtTT0dma2ZLR3IzaWJzc0lYT0N4TWxNYURrS1N1YWcvNjQw?x-oss-process=image/format,png'
       ] // 选择上传的文件数据集
     };
+    return resultObject;
   },
 
   mounted() {
@@ -247,7 +267,40 @@ export default Vue.extend({
         option.componentOptions.children[0].text.toLowerCase().indexOf(input.toLowerCase()) >= 0
       );
     },
+    onAddTagClick() {
+      // alert('呵呵呵' + this.SearchTagKey);
+      this.$post({
+        url: '/DatasetManage/SaveSingleTag',
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json;charset=UTF-8'
+        },
+        params: { 'DatasetName': this.CurrentDatasetName, 'TagData': this.SearchTagKey }
+      })
+        .then((res: any) => {
+          if (res.success) {
+            this.$message.info(res.message);
+            this.Tags.push(this.SearchTagKey);
+            this.onSearchTags(this.SearchTagKey);
+          } else {
+            this.$message.info(res.message);
+          }
+        });
 
+    },
+    // 查找某个标签
+    onSearchTags(value: string) {
+      // alert('搜索' + value);
+      debugger;
+      const temptags: any = [];
+      this.Tags.forEach((tag: string) => {
+        if (tag.indexOf(value) > -1) {
+          temptags.push(tag);
+        }
+      });
+      annotate.SetTags(temptags);
+      annotate.renderLabels();
+    },
     // 执行查询
     GetLabels(value: string) {
       this.CurrentDatasetName = value;
@@ -324,7 +377,7 @@ export default Vue.extend({
       // const canvasMain = document.querySelector('.canvasMain') as HTMLDivElement;
       const canvas = document.getElementById('canvas') as HTMLCanvasElement;
       // const resultGroup = document.querySelector('.resultGroup') as HTMLDivElement;
-      document.addEventListener('keyup', this.ShortcutKey); // 绑定快捷键
+      document.addEventListener('keydown', this.ShortcutKey); // 绑定快捷键
       // debugger;
       // 设置画布宽高背景色
       canvas.width = canvas.clientWidth;
@@ -342,7 +395,7 @@ export default Vue.extend({
         screenShot: document.querySelector('.screenShot') as HTMLPreElement,
         screenFull: document.querySelector('.screenFull') as HTMLPreElement,
         colorHex: document.querySelector('#colorHex') as HTMLInputElement,
-        toolTagsManager: document.querySelector('.toolTagsManager') as HTMLDivElement,
+        // toolTagsManager: document.querySelector('.toolTagsManager') as HTMLDivElement,
         historyGroup: document.querySelector('.historyGroup') as HTMLDivElement
       });
     },
@@ -357,9 +410,10 @@ export default Vue.extend({
       })
         .then((res: any) => {
           if (res.success) {
-            const Tags = res.data.replace('\r\n', '\n').split('\n');
-            console.log(Tags);
-            annotate.SetTags(Tags);
+            this.Tags = res.data.replace('\r\n', '\n').trim().split('\n');
+            console.log(this.Tags);
+            debugger;
+            annotate.SetTags(this.Tags);
           } else {
             this.$message.info(res.message);
           }
@@ -376,27 +430,28 @@ export default Vue.extend({
 
     // 快捷键
     ShortcutKey(e: KeyboardEvent) {
-      console.log(e);
+      // console.log(e);
+      // debugger;
       // 空格键 继续执行刚才的标注
-      if (e.key === ' ') {
+      if (e.key === ' ' && e.ctrlKey) {
         e.preventDefault();
         // alert('空格');
         annotate.SetFeatures(this.currentFeatures, true);
       }
       // D键 下一张
-      if (e.key === 'd') {
+      if (e.key === 'd' && e.ctrlKey) {
         e.preventDefault();
         // alert('D');
         this.nextBtn_onclick();
       }
       // A键 上一张
-      if (e.key === 'a') {
+      if (e.key === 'a' && e.ctrlKey) {
         e.preventDefault();
         // alert('A');
         this.prevBtn_onclick();
       }
       // 保存键 保存键
-      if (e.key === 's') {
+      if (e.key === 's' && e.ctrlKey) {
         e.preventDefault();
         // alert('S ');
         this.SaveImageTags(this.taskName, annotate.Arrays.imageAnnotateMemory, function(this: any) { });
@@ -421,11 +476,11 @@ export default Vue.extend({
       annotate.SetFeatures('dragOn', true);
     },
     // 标签管理工具
-    tools_toolTagsManager(e: any) {
-      this.currentFeatures = 'tagsOn';
-      this.toggleTools(e.target as HTMLDivElement);
-      annotate.SetFeatures('tagsOn', true);
-    },
+    // tools_toolTagsManager(e: any) {
+    //   this.currentFeatures = 'tagsOn';
+    //   this.toggleTools(e.target as HTMLDivElement);
+    //   annotate.SetFeatures('tagsOn', true);
+    // },
     // 矩形
     tools_toolRect(e: any) {
       this.currentFeatures = 'rectOn';
