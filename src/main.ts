@@ -9,10 +9,19 @@ import store from './store';
 import request from '@/common/utils/request';
 import eventLib from '@/common/utils/document-event';
 window.$_EventLib = eventLib;
-Vue.config.productionTip = false;
 
+
+Vue.config.productionTip = false;
 Vue.prototype.$post = request;
 Vue.prototype.$get = request;
+
+Vue.prototype.ToFormData = function(param: any) {
+  const formData = new FormData();
+  for (const p in param) {
+    formData.append(p, param[p]);
+  }
+  return formData;
+};
 
 new Vue({
   router,

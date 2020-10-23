@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header></Header>
+    <!-- <Header></Header> -->
     <div class="main">
       <Navs></Navs>
       <div class="container" style="padding-left: 5px; padding-right: 0px;">
@@ -18,12 +18,12 @@
 <script lang="ts">
 // @ is an alias to /src
 import Navs from './components/Navs.vue';
-import Header from './components/Header.vue';
+// import Header from './components/Header.vue';
 // import Breadcrumb from './components/Breadcrumb.vue';
 export default {
   components: {
     Navs,
-    Header,
+    // Header,
     // Breadcrumb
   }
 };

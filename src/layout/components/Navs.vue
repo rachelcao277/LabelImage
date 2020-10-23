@@ -18,7 +18,7 @@
         <span slot="title">
           <a-icon type="mail" /><span>数据集管理</span>
         </span>
-        <a-menu-item key="/dataset">
+        <a-menu-item key="/dataset/index">
           数据集管理
         </a-menu-item>
         <!-- <a-menu-item key="/dataset/test">
@@ -47,12 +47,14 @@
         <span slot="title">
           <a-icon type="mail" /><span>训练管理</span>
         </span>
-        <a-menu-item key="/trainAI">
-          训练AI
+        <a-menu-item key="/train_ai/index">
+          训练AI模型
         </a-menu-item>
-
-        <a-menu-item key="/testAI">
-          测试AI
+        <a-menu-item key="/train_ai/test">
+          测试AI模型
+        </a-menu-item>
+        <a-menu-item key="/train_ai/deploy">
+          AI模型的管理和发布
         </a-menu-item>
       </a-sub-menu>
 
@@ -60,7 +62,7 @@
         <span slot="title">
           <a-icon type="mail" /><span>关于我们</span>
         </span>
-        <a-menu-item key="/about">
+        <a-menu-item key="/about/index">
           关于我们
         </a-menu-item>
         <a-menu-item key="/about/test">

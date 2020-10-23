@@ -340,13 +340,14 @@ export default Vue.extend({
         });
     },
 
+    // 开始标注
     StartDoLabel() {
       // 已经初始化完毕这两个.
       // this.CurrentDatasetName
       // this.CurrentDatasetLabelFolder
       // 加载所有的图片, 然后开始标注
       this.$post({
-        url: '/DatasetManage/GetImages',
+        url: '/DatasetManage/GetImagesByLabel',
         method: 'post',
         headers: {
           'Content-Type': 'application/json;charset=UTF-8'

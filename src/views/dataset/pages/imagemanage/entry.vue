@@ -63,7 +63,7 @@
             v-bind:title="this.DatasetName + ' > ' + this.currentLabel.LabelSetName "
             sub-title=""
             :ghost="false"
-            @back="() => null"
+            @back="() => this.$router.push({path:'/dataset'})"
           />
         <a-button-group style="margin-bottom:10px;">
           <a-button type="primary" title="修改当前关键词" @click="editingLabelSetName = currentLabel.LabelSetName;VisibleChangeCurrentLabelModal=true;"  :disabled="currentLabel.LabelSetName =='' "><a-icon type="edit" /></a-button>

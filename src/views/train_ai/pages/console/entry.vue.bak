@@ -1,0 +1,11 @@
+<template>
+  <div id="jindu">123456</div>
+</template>
+<script lang="ts">
+import Vue from 'vue';
+import { Chart } from '@antv/g2';
+
+</script>
+<style>
+
+</style>

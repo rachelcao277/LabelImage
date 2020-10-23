@@ -33,6 +33,15 @@ module.exports = {
       //   '^/api':''
       // }
     },
+    '/static/ToDetectImages/': {
+      target: 'http://localhost:8181/',
+      changOrigin: true,  //允许跨域
+      secure: false,  // 如果是https接口，需要配置这个参数
+      ws: true   //如果要代理 websockets，配置这个参数
+      // pathRewrite:{
+      //   '^/api':''
+      // }
+    },
     // '/static': {
     //   target: 'http://localhost:8181/',
     //   changOrigin: true,  //允许跨域

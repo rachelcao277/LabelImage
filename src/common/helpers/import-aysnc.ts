@@ -10,7 +10,8 @@ const toUpperCaseFisrt = (str: string) => {
 export function routeClearUp(route: string, pageName: string, config?: any) {
   let res = {
     // 所有的一级目录下的 index 页面，皆直接使用当前路由
-    path: pageName === 'index' ? `/${route}` : `/${route}/${pageName}`,
+    // path: pageName === 'index' ? `/${route}` : `/${route}/${pageName}`,
+    path: `/${route}/${pageName}`,
     name: `${toUpperCaseFisrt(route)}${toUpperCaseFisrt(pageName)}`,
     component: loadComponent(route, pageName)
   };

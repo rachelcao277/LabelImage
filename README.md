@@ -58,9 +58,10 @@ LabelImage 是一款用于深度学习分割模型训练的图像标注工具（
 - 
 # 项目依赖于 
 - node.js 
-- Vue, 
-- Ant Design Pro ,
-- Vue-cli@3 第三版
+- Vue
+- Vue-cli@4
+- G2
+- Ant Design Vue
 - yarn
 
 # 安装
@@ -79,6 +80,17 @@ npm install -D less-loader less
 
 # Stylus
 npm install -D stylus-loader stylus
+
+1.3 安装依赖库
+# G2
+npm install @antv/g2
+npm install @antv/data-set
+
+# Ant Design Vue
+npm install ant-design-vue
+
+如果你的网络环境不佳，推荐使用 cnpm。
+
 
 2. 安装依赖组件
 - cd ./某个文件夹
