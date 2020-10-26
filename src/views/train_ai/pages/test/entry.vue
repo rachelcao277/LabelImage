@@ -109,10 +109,10 @@
 
   </div>
 </template>
-<script lang="ts">
+<script>
 // import Vue from 'vue';
 
-function getBase64(file: any) {
+function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -197,7 +197,7 @@ export default {
           'Content-Type': 'application/json;charset=UTF-8'
         }
       })
-        .then((res: any) => {
+        .then((res) => {
           if (res.success) {
             this.DetectedImagesList = res.data;
           } else {
@@ -214,13 +214,13 @@ export default {
           'Content-Type': 'application/json;charset=UTF-8'
         }
       })
-        .then((res: any) => {
+        .then((res) => {
           if (res.success) {
             this.ModelList = res.data;
           } else {
             this.$message.error(res.message);
           }
-        }).catch((err: any) => {
+        }).catch((err) => {
           console.log(err);
           this.$message.error('加载模型文件列表失败');
         });
@@ -234,7 +234,7 @@ export default {
           'Content-Type': 'application/json;charset=UTF-8'
         }
       })
-        .then((res: any) => {
+        .then((res) => {
           if (res.success) {
             this.ToDetectImagesList = res.data;
           } else {
@@ -245,17 +245,17 @@ export default {
     handleCancel() {
       this.previewVisible = false;
     },
-    handlePreview(file: any) {
+    handlePreview(file) {
       if (!file.url && !file.preview) {
         file.preview = getBase64(file.originFileObj);
       }
       this.previewImage = file.url || file.preview;
       this.previewVisible = true;
     },
-    // handleRemove(file: any) {
+    // handleRemove(file) {
     //   console.log(file);
     // },
-    // beforeUpload(file: any) {
+    // beforeUpload(file) {
     //   const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
     //   if (!isJpgOrPng) {
     //     this.$message.error('You can only upload JPG file!');
@@ -266,7 +266,7 @@ export default {
     //   }
     //   return isJpgOrPng && isLt2M;
     // },
-    DeleteImage(imagefile: any) {
+    DeleteImage(imagefile) {
       // alert(url);
       console.log(imagefile);
       // console.log(imageindex);
@@ -279,7 +279,7 @@ export default {
         },
         params: { 'ImageFileName': imagefile.url }
       })
-        .then((res: any) => {
+        .then((res) => {
           if (res.success) {
             this.$message.info(res.message);
             for (let i = 0; i < this.ToDetectImagesList.length; i++) {
@@ -317,7 +317,7 @@ export default {
         timeout: 300000
       },
       { timeout: 200000 })
-        .then((res: any) => {
+        .then((res) => {
           this.loading = false;
           if (res.success) {
             this.$message.info(res.message);
@@ -326,13 +326,13 @@ export default {
           }
           this.GetDetectedImagesList();
         })
-        .catch((err: any) => {
+        .catch((err) => {
           this.loading = false;
           this.$message.error(err);
           this.GetDetectedImagesList();
         });
     },
-    handleChange(parfile: any) {
+    handleChange(parfile) {
       // debugger;
       // console.log(parfile);
       // console.log(parfile.file.response);

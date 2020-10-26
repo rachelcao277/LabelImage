@@ -36,7 +36,7 @@
   </div>
 </template>
 <script lang="ts">
-// import Vue from 'vue';
+import Vue from 'vue';
 
 // function getBase64(file: any) {
 //   return new Promise((resolve, reject) => {
@@ -46,7 +46,7 @@
 //     reader.onerror = error => reject(error);
 //   });
 // }
-export default {
+export default Vue.extend({
   data() {
     return {
       SelectedAIModel: '',
@@ -158,7 +158,7 @@ export default {
         });
     }
   }
-};
+});
 </script>
 <style>
 /* you can make up upload button and sample style by using stylesheets */

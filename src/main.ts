@@ -2,6 +2,7 @@ import Vue from 'vue';
 import 'core-js/stable';
 import '@/common/styles/global.less';
 import 'regenerator-runtime/runtime';
+
 import layout from './layout/index.vue';
 import router from './router';
 import store from './store';
