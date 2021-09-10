@@ -65,7 +65,7 @@ class LabelImage {
 		this.isFullScreen = false;
 
 		// 是否移动图像标注圆点
-		this.isDrogCircle = false;
+		this.isDragCircle = false;
 
 		// 当前点击圆点index
 		this.snapCircleIndex = 0;
@@ -410,7 +410,7 @@ class LabelImage {
 		let _arrays = this.Arrays;
 		this.GetMouseInCanvasLocation(e);
 		if (e.button === 0) {
-			this.isDrogCircle = false;
+			this.isDragCircle = false;
 			if (_arrays.resultIndex !== 0) {
 				let imageIndex = _arrays.imageAnnotateShower[_arrays.resultIndex-1].content;
 				if (imageIndex.length > 0) {
@@ -418,7 +418,7 @@ class LabelImage {
 						// 使用勾股定理计算鼠标当前位置是否处于当前点上
 						let distanceFromCenter = Math.sqrt(Math.pow(imageIndex[i].x - this.mouseX, 2) + Math.pow(imageIndex[i].y - this.mouseY, 2));
 						if (distanceFromCenter <= this.radius){
-							this.isDrogCircle = true;
+							this.isDragCircle = true;
 							this.snapCircleIndex = i;
 							if (_arrays.imageAnnotateShower[_arrays.resultIndex-1].contentType === "rect") {
 								this.Nodes.canvas.addEventListener('mousemove', this.DragRectCircleRepaintRect);
@@ -431,12 +431,12 @@ class LabelImage {
 							return;
 						}
 						else {
-							this.isDrogCircle = false;
+							this.isDragCircle = false;
 						}
 					}
 				}
 			}
-			if (!this.isDrogCircle){
+			if (!this.isDragCircle){
 				if (this.Features.dragOn) {
 					// 是否开启拖拽模式
 					let prevP = this.CalculateChange(e, _nodes.canvas);
@@ -475,7 +475,7 @@ class LabelImage {
 						// 未选定标签结果，创建新标签
 						this.CreateNewResultList(this.mouseX, this.mouseY, "polygon");
 					}
-					if (!this.isDrogCircle) {
+					if (!this.isDragCircle) {
 						let index = _arrays.resultIndex - 1;
 						// 保存坐标点
 						_arrays.imageAnnotateShower[index].content.push({x: this.mouseX, y: this.mouseY});
@@ -1480,7 +1480,7 @@ class LabelImage {
 		return {x, y}
 	};
 
-	//----按缩放程度修改数据存储面板数据
+	//----按缩放程度修改数据存储面板数据（坐标点转换过程）
 	ReplaceAnnotateMemory = () => {
 		this.Arrays.imageAnnotateMemory.splice(0, this.Arrays.imageAnnotateMemory.length);
 		this.Arrays.imageAnnotateShower.map((item)=> {
@@ -1506,7 +1506,7 @@ class LabelImage {
 			});
 		});
 	};
-	//----按缩放程度修改数据展示面板数据
+	//----按缩放程度修改数据展示面板数据（坐标点转换过程）
 	ReplaceAnnotateShow = () => {
 		this.Arrays.imageAnnotateShower.splice(0, this.Arrays.imageAnnotateShower.length);
 		this.Arrays.imageAnnotateMemory.map((item, index)=> {
