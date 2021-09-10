@@ -1269,9 +1269,11 @@ class LabelImage {
 
 	//----屏幕快照事件
 	ScreenShot = () => {
+		this.DrawSavedAnnotateInfoToMemory(true);
 		let imgData = this.Nodes.bCanvas.toDataURL('image/jpeg');
 		let windowOpen = window.open('about:blank','image from canvas');
 		windowOpen.document.write("<img alt='' src='"+ imgData +"'>");
+		this.DrawSavedAnnotateInfoToMemory(false);
 	};
 
 	//----全屏显示事件
